@@ -70,6 +70,7 @@ app.get('/logout', view.logout);
 app.post('/create', db.postCreate);
 app.get('/game/:id',ensureAuthenticated, view.game);
 app.get('/game/:gameid/user/:userid', ensureAuthenticated, view.hand);
+app.get('/connect4', view.connect4);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

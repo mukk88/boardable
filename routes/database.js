@@ -17,15 +17,22 @@ userSchema.plugin(autoIncrement.plugin, { model: 'User', startAt: 1 });
 var User = mongoose.model('User', userSchema);
 
 exports.getUserVar = function(){ return User}; 
+exports.getHash = function(){return pwhash};
 
 exports.postCreate = function(req,res){
-	var user = new User();
-	console.log(req.body.username);
-	User.nextCount(function(err,count){
-		user.username = req.body.username;
-		user.pw = pwhash.generate(req.body.password);
-		user.save();
+	User.findOne({username:req.body.username}, function(err,user){
+		if(!user){
+			var user = new User();
+			User.nextCount(function(err,count){
+				user.username = req.body.username;
+				user.pw = pwhash.generate(req.body.password);
+				user.save();
+			});
+			res.render('index',{title:'Boardable'});
+		}else{
+			res.send('username already exists, please try another one');
+		}
 	});
-	res.render('index',{title:'Boardable'});
 };
+
 

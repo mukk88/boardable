@@ -63,7 +63,7 @@ exports.createGame = function(req,res){
 			var gid;
 			Game.nextCount(function(err, count) {
 				gid = count;
-				res.render('board', {gameid:gid});
+				res.render('board', {gameid:gid, port:port});
 			});
 			var g = new Game();
 			Game.nextCount(function(err,count){
@@ -86,13 +86,13 @@ exports.joinGame = function(req,res){
 	var url = req.url.split('/');
 	url.pop();
 	var gid = url.pop();
-	res.render('hand', {userid:uid,gameid:gid});
+	res.render('hand', {userid:uid,gameid:gid, port:port});
 	// get all cards from the database and send them too
 }
 
 exports.viewGame = function(req,res){
 	var gid = req.url.split('/').pop();
-	res.render('board',{gameid:gid});
+	res.render('board',{gameid:gid, port:port});
 	// get all cards for table and send them
 }
 
@@ -107,8 +107,13 @@ exports.deleteGame = function(req,res){
 }
 
 //socketio
+var port;
+exports.setPort = function(p){
+	port = p;
+}
 
 exports.setupIO= function(io){
+
 	io.sockets.on('connection', function (socket) {
 
 	  socket.emit('welcome', { game:'bridge'});

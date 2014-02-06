@@ -6,8 +6,9 @@
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
 	  var gid = <%- gameid %>;	
-	  var socket = io.connect('http://boardable.azurewebsites.net');
-	  // var socket = io.connect('http://localhost');
+	  var port = <%-port%>;
+	  var socket = io.connect('http://boardable.azurewebsites.net:' + port);
+	  // var socket = io.connect('http://localhost:' + port);
 	  socket.on('welcome', function (data) {
 	    socket.emit('table', { gameid: gid });
 	  });
@@ -26,6 +27,8 @@
 <body>
 	<div class="opening"></div>
 	<%=gameid%>
+	and port- 
+	<%=port%>
 	<button id = "give">give card</button>
 	<div id = "take"></div>
 </body>

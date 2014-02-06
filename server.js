@@ -8,7 +8,7 @@ var path = require('path');
 var io = require('socket.io');
 var db = require('./routes/database');
 
-var app = express();
+var app = express.createServer();
 var sio = require('socket.io');
 
 var passport = require('passport')
@@ -87,7 +87,7 @@ app.listen(app.get('port'),function(){
 });
 
 var io = sio.listen(app);
-var server = http.createServer(app);
+// var server = http.createServer(app);
 
 db.setupIO(io);
 db.setPort(app.get('port'));

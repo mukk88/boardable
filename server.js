@@ -9,6 +9,7 @@ var io = require('socket.io');
 var db = require('./routes/database');
 
 var app = express();
+var sio = require('socket.io');
 
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
@@ -74,11 +75,19 @@ app.get('/game/:gameid/user', ensureAuthenticated, db.joinGame);
 app.get('/connect4', view.connect4);
 
 //server and io
-var server = http.createServer(app);
-var io = require('socket.io').listen(server);
-server.listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+// var server = http.createServer(app);
+// var io = require('socket.io').listen(server);
+// server.listen(app.get('port'), function(){
+//   console.log('Express server listening on port ' + app.get('port'));
+// });
+
+
+app.listen(app.get('port'),function(){
+  console.log('express server listening on ' + app.get('port'));
 });
+
+var io = sio.listen(app);
+
 db.setupIO(io);
 db.setPort(app.get('port'));
 

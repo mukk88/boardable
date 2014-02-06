@@ -15,17 +15,7 @@ exports.logout = function(req, res){
   res.redirect('/');
 }
 
-exports.game = function(req,res){
-	//call this function in another function to pass in other parameters
-	res.render('board');
-}
-
-exports.hand = function(req,res){
-
-	//use req.user to get the id of the user who is logged in
-	res.send("this is a users hand")
-}
-
 exports.connect4 = function(req,res){
 	res.render('fun');
 }
+

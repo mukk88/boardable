@@ -68,9 +68,9 @@ app.post('/login',passport.authenticate('local', { successRedirect: '/', failure
 app.get('/logout', view.logout);
 app.post('/create', db.createUser);
 app.get('/allGames', ensureAuthenticated, db.getAllGames);
-app.get('/game/:id',ensureAuthenticated, view.game);
+app.get('/game/:id',ensureAuthenticated, db.viewGame);
 app.post('/game', db.createGame);
-app.get('/game/:gameid/user', ensureAuthenticated, view.hand);
+app.get('/game/:gameid/user', ensureAuthenticated, db.joinGame);
 app.get('/connect4', view.connect4);
 
 //server and io

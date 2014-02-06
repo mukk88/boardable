@@ -8,7 +8,7 @@ var path = require('path');
 var io = require('socket.io');
 var db = require('./routes/database');
 
-var app = express.createServer();
+var app = express();
 var sio = require('socket.io');
 
 var passport = require('passport')
@@ -81,12 +81,12 @@ app.get('/connect4', view.connect4);
 //   console.log('Express server listening on port ' + app.get('port'));
 // });
 
-
-app.listen(app.get('port'),function(){
+var server = http.createServer(app);
+server.listen(app.get('port'),function(){
   console.log('express server listening on ' + app.get('port'));
 });
 
-var io = sio.listen(app);
+var io = sio.listen(server);
 // var server = http.createServer(app);
 
 db.setupIO(io);

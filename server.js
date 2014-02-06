@@ -1,14 +1,11 @@
-
-/**
- * Module dependencies.
- */
-
+//required
 var flash = require('connect-flash');
 var express = require('express');
 var view = require('./routes/view');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
+var io = require('socket.io');
 var db = require('./routes/database');
 
 var app = express();
@@ -19,6 +16,7 @@ var passport = require('passport')
 var User = db.getUserVar();
 var pwhash = db.getHash();
 
+//passport
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
@@ -41,7 +39,7 @@ passport.use(new LocalStrategy(
   }
 ));
 
-// all environments
+//app setup
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -63,18 +61,25 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', ensureAuthenticated, view.index);
+//routes
+app.get('/', ensureAuthenticated, db.getAllGames);
 app.get('/login', view.login);
 app.post('/login',passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login', failureFlash:true}));
 app.get('/logout', view.logout);
-app.post('/create', db.postCreate);
+app.post('/create', db.createUser);
+app.get('/allGames', ensureAuthenticated, db.getAllGames);
 app.get('/game/:id',ensureAuthenticated, view.game);
-app.get('/game/:gameid/user/:userid', ensureAuthenticated, view.hand);
+app.post('/game', db.createGame);
+app.get('/game/:gameid/user', ensureAuthenticated, view.hand);
 app.get('/connect4', view.connect4);
 
-http.createServer(app).listen(app.get('port'), function(){
+//server and io
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
+server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+db.setupIO(io);
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }

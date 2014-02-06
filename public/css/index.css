@@ -1,0 +1,32 @@
+body{
+	margin:0;
+}
+
+.container{
+	max-width: 700px;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.context{
+	margin: 0 auto;
+	margin-top: 60px;
+	min-height: 400px;
+	padding: 30px;
+	border: 1px solid;
+}
+
+.game{
+	height:40px;
+	width:350px;
+	margin: 0 auto; 
+}
+
+.game span{
+	float:left;
+}
+
+.game button{
+	float:right;
+}

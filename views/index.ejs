@@ -1,9 +1,26 @@
 <html>
 <head>
 	<title>boardable</title>
+	<link rel="stylesheet" href="css/index.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>	
 </head>
 <body>
-	this is a list of all the games available.
-	you should be able to create, join, delete or view a game from here.
+	<div class="container">
+		<div class="context">
+			<form action = "/game" method = "post">
+				<input required autofocus type="text" name = "name">
+				<input required type="password" name = "password">
+				<input type="submit" value = "create game">
+			</form>
+			<h1>all games</h1>
+			<div class = "games"></div>
+		</div>
+	</div>
 </body>
+<script type="text/javascript">
+	<% if(games){%>
+		var g = <%- JSON.stringify(games) %>;
+	<% }%>
+</script>
+<script src="js/index.js"></script>
 </html>

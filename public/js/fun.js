@@ -34,7 +34,6 @@ $(document).ready(function() {
 		}
 	}
 
- 
 	function updatetop(e){
 		var pos   = $('.board').offset();
 		var elPos = { X:pos.left , Y:pos.top };
@@ -88,8 +87,7 @@ $(document).ready(function() {
 
 	$('.board').mousemove(updatetop);
 	$('.innerboard').mousemove(updatetop);
-
-
+	
 	$('.board').click(function(){
 		var len = tokens[cur].length;
 		if(len < 8 && !over){

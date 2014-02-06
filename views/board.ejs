@@ -6,8 +6,8 @@
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
 	  var gid = <%- gameid %>;	
-	  var socket = io.connect();
-	  // var socket = io.connect('http://localhost:' + port);
+	  // var socket = io.connect();
+	  var socket = io.connect('http://localhost');
 	  socket.on('welcome', function (data) {
 	    socket.emit('table', { gameid: gid });
 	  });

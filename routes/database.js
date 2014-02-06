@@ -131,10 +131,19 @@ exports.setupIO= function(io){
 	  	console.log(data);
 	    console.log('socket' + socket.id)
 	    Game.findOne({_id:data.gameid}, function (err,game) {
-	  		game.users.push({
-	  			userid:data.userid,
-	  			socketid:socket.id
-	  		})
+	    	var existing = false;
+	    	for(var i=0;i<game.users.length;i++){
+	    		if(game.users[i].userid==data.userid){
+	    			game.users[i].socketid = socket.id;
+	    			existing = true;
+	    		}
+	    	}
+	    	if(!existing){
+		  		game.users.push({
+		  			userid:data.userid,
+		  			socketid:socket.id
+		  		})
+	    	}
 	  		game.save();
 	  		// should also tell table someone joined
 	  	});

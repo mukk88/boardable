@@ -6,7 +6,8 @@
 	<script>
 	  var uid = <%- userid %>;	
 	  var gid = <%- gameid %>;	
-	  var socket = io.connect('http://localhost');
+	  var socket = io.connect('http://boardable.azurewebsites.net');
+	  // var socket = io.connect('http://localhost');
 	  socket.on('welcome', function (data) {
 	    socket.emit('hand', { userid: uid, gameid:gid });
 	  });

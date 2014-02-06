@@ -6,7 +6,7 @@
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
 	  var gid = <%- gameid %>;	
-	  var socket = io.connect();
+	  var socket = io.connect('http://boardable.azurewebsites.net');
 	  // var socket = io.connect('http://localhost');
 	  socket.on('welcome', function (data) {
 	    socket.emit('table', { gameid: gid });

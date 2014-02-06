@@ -87,6 +87,7 @@ app.listen(app.get('port'),function(){
 });
 
 var io = sio.listen(app);
+var server = http.createServer(app);
 
 db.setupIO(io);
 db.setPort(app.get('port'));

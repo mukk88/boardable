@@ -3,13 +3,16 @@ var flash = require('connect-flash');
 var express = require('express');
 var view = require('./routes/view');
 var user = require('./routes/user');
-var http = require('http');
-var path = require('path');
 var io = require('socket.io');
+// var http = require('http');
+var app = express();
+var server = require('http').createServer(app);
+var io = io.listen(server);
+
+var path = require('path');
 var db = require('./routes/database');
 
-var app = express();
-var sio = require('socket.io');
+// var sio = require('socket.io');
 
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
@@ -81,12 +84,12 @@ app.get('/connect4', view.connect4);
 //   console.log('Express server listening on port ' + app.get('port'));
 // });
 
-var server = http.createServer(app);
+// var server = http.createServer(app);
 server.listen(app.get('port'),function(){
   console.log('express server listening on ' + app.get('port'));
 });
 
-var io = sio.listen(server);
+// var io = sio.listen(server);
 // var server = http.createServer(app);
 
 db.setupIO(io);

@@ -5,9 +5,28 @@ exports.getHash = function(){return pwhash};
 //mongo setup
 var mongoose = require('mongoose');
 var connectionString = "mongodb://woohoo:12345qwert@ds027759.mongolab.com:27759/boardables"; 
-mongoose.connect(connectionString);
+var options = {
+    server:{
+        auto_reconnect: true,
+        poolSize: 10,
+        socketOptions:{
+            keepAlive: 1
+        }
+    },
+    db: {
+        numberOfRetries: 10,
+        retryMiliSeconds: 1000
+    }
+}
+mongoose.connect(connectionString, function(err) {
+    if(err) console.log('MongoDB: connection error -> ' + err);
+    else console.log('MongoDB: successfully connected');
+});
 var autoIncrement = require('mongoose-auto-increment');
-var connection = mongoose.createConnection(connectionString);
+var connection = mongoose.createConnection(connectionString, options);
+connection.on('error', function(err) {
+    console.log("DB connection Error: "+err);
+});
 autoIncrement.initialize(connection);
 
 //user database
@@ -26,6 +45,7 @@ exports.createUser = function(req,res){
 		if(!user){
 			var user = new User();
 			User.nextCount(function(err,count){
+				if(err) return; 
 				user.username = req.body.username;
 				user.pw = pwhash.generate(req.body.password);
 				user.save();
@@ -67,6 +87,7 @@ exports.createGame = function(req,res){
 			});
 			var g = new Game();
 			Game.nextCount(function(err,count){
+				if(err) return;
 				g.name = req.body.name;
 				g.pw = pwhash.generate(req.body.password);
 				g.creator = req.user;
@@ -131,6 +152,10 @@ exports.setupIO= function(io){
 	  	console.log(data);
 	    console.log('socket' + socket.id)
 	    Game.findOne({_id:data.gameid}, function (err,game) {
+	    	if(err) {
+    			console.log('MongoDB: connection error -> ' + err);
+    			return;
+    		}
 	    	var existing = false;
 	    	for(var i=0;i<game.users.length;i++){
 	    		if(game.users[i].userid==data.userid){
@@ -152,6 +177,10 @@ exports.setupIO= function(io){
 	  socket.on('give', function(data){
 	  	console.log(data);
 	  	Game.findOne({_id:data.gameid}, function (err,game) {
+    		if(err) {
+    			console.log('MongoDB: connection error -> ' + err);
+    			return;
+    		}
 	    	if(data.to){
 	    		var socket;
 	    		for(var i=0;i<game.users.length;i++){
@@ -173,8 +202,8 @@ exports.setupIO= function(io){
 	  });
 
 	  socket.on('disconnect', function(){
-	  	console.log('disconnected');
-	  	//how to tell which game it is from? 
+	  	console.log("dc " + socket.id);
+	  	//how to tell which game it is from? iterate all games
 	  	//remove the socket id from the database, decrement user list if is user
 	  });
 

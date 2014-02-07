@@ -5,7 +5,6 @@ var view = require('./routes/view');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-var io = require('socket.io');
 var db = require('./routes/database');
 
 var app = express();

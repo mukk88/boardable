@@ -7,8 +7,8 @@
 	  var uid = <%- userid %>;	
 	  var gid = <%- gameid %>;	
 
-	  // var socket = io.connect();
-	  var socket = io.connect('http://localhost');
+	  var socket = io.connect();
+	  // var socket = io.connect('http://localhost');
 	  socket.on('welcome', function (data) {
 	    socket.emit('hand', { userid: uid, gameid:gid });
 	  });

@@ -18,4 +18,3 @@ exports.logout = function(req, res){
 exports.connect4 = function(req,res){
 	res.render('fun');
 }
-

@@ -4,7 +4,8 @@ exports.getHash = function(){return pwhash};
 
 //mongo setup
 var mongoose = require('mongoose');
-var connectionString = "mongodb://woohoo:12345qwert@ds027759.mongolab.com:27759/boardables"; 
+// var connectionString = "mongodb://woohoo:12345qwert@ds027759.mongolab.com:27759/boardables"; 
+var connectionString = "mongodb://woohoo:qwert12345@widmore.mongohq.com:10000/Boardable";
 var options = {
     server:{
         auto_reconnect: true,
@@ -13,6 +14,7 @@ var options = {
             keepAlive: 1
         }
     },
+    replset: { rs_name: 'myReplicaSetName', socketOptions:{keepAlive:1} },
     db: {
         numberOfRetries: 10,
         retryMiliSeconds: 1000
@@ -119,6 +121,7 @@ exports.viewGame = function(req,res){
 
 exports.getAllGames = function(req,res){
 	Game.find({}, function (err, games) {
+		if(err) return;
 		res.render('index',{title:'title',games:games});
   	});
 }
@@ -151,50 +154,58 @@ exports.setupIO= function(io){
 	  socket.on('hand', function(data){
 	  	console.log(data);
 	    console.log('socket' + socket.id)
-	    Game.findOne({_id:data.gameid}, function (err,game) {
-	    	if(err) {
-    			console.log('MongoDB: connection error -> ' + err);
-    			return;
-    		}
-	    	var existing = false;
-	    	for(var i=0;i<game.users.length;i++){
-	    		if(game.users[i].userid==data.userid){
-	    			game.users[i].socketid = socket.id;
-	    			existing = true;
+	    try{
+		    Game.findOne({_id:data.gameid}, function (err,game) {
+		    	if(err) {
+	    			console.log('MongoDB: connection error -> ' + err);
+	    			return;
 	    		}
-	    	}
-	    	if(!existing){
-		  		game.users.push({
-		  			userid:data.userid,
-		  			socketid:socket.id
-		  		})
-	    	}
-	  		game.save();
-	  		// should also tell table someone joined
-	  	});
+		    	var existing = false;
+		    	for(var i=0;i<game.users.length;i++){
+		    		if(game.users[i].userid==data.userid){
+		    			game.users[i].socketid = socket.id;
+		    			existing = true;
+		    		}
+		    	}
+		    	if(!existing){
+			  		game.users.push({
+			  			userid:data.userid,
+			  			socketid:socket.id
+			  		})
+		    	}
+		  		game.save();
+		  		// should also tell table someone joined
+		  	});
+	    }catch(error){
+	    	console.log('take' + error);
+	    }
 	  });
 
 	  socket.on('give', function(data){
 	  	console.log(data);
-	  	Game.findOne({_id:data.gameid}, function (err,game) {
-    		if(err) {
-    			console.log('MongoDB: connection error -> ' + err);
-    			return;
-    		}
-	    	if(data.to){
-	    		var socket;
-	    		for(var i=0;i<game.users.length;i++){
-	    			if(game.users[i].userid == data.to){
-	    				socket = game.users[i].socketid;
-	    			}
+	  	try{
+		  	Game.findOne({_id:data.gameid}, function (err,game) {
+	    		if(err) {
+	    			console.log('MongoDB: connection error -> ' + err);
+	    			return;
 	    		}
-	    		io.sockets.socket(socket).emit('take',{});
-	    		//throw error if cannot find
-	    	}else{
-	    		var socket = game.table;
-	    		io.sockets.socket(socket).emit('take',{});
-	    	}
-	    });
+		    	if(data.to){
+		    		var socket;
+		    		for(var i=0;i<game.users.length;i++){
+		    			if(game.users[i].userid == data.to){
+		    				socket = game.users[i].socketid;
+		    			}
+		    		}
+		    		io.sockets.socket(socket).emit('take',{});
+		    		//throw error if cannot find
+		    	}else{
+		    		var socket = game.table;
+		    		io.sockets.socket(socket).emit('take',{});
+		    	}
+		    });
+	  	}catch(error){
+	  		console.log('give' + error);
+	  	}
 	  	// need to know from who,to who and card details
 	  	// update database
 	  	// send to specific socket io.sockets.socket(socketId).emit(...)

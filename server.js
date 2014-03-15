@@ -6,6 +6,7 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var db = require('./routes/database');
+var book = require('./routes/book');
 
 var app = express();
 
@@ -71,6 +72,9 @@ app.get('/game/:id',ensureAuthenticated, db.viewGame);
 app.post('/game', db.createGame);
 app.get('/game/:gameid/user', ensureAuthenticated, db.joinGame);
 app.get('/connect4', view.connect4);
+
+app.get('/book', book.getBook);
+app.post('/book', book.updateBook);
 
 //server and io
 var server = http.createServer(app);

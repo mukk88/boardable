@@ -4,6 +4,7 @@ $(document).ready(function() {
     $('button').css('left', ($('#main').position().left - 100) + 'px');
     $('#overlay').draggable();
     $('#read').hide();
+    $('.lined').autogrow();
     $('.lined').linedtextarea();
     $('.lines').hide();
 

@@ -82,10 +82,33 @@ button:active{
 
 .lined{
 	resize:none;
-	width:100%;
+	width:600px;
 	height:100%;
 	border:none;
 	text-align: left;
-	font-size: 18px;
 	margin-bottom: 60px;
+	display: inline;
+	font-size: 15pt;
+	font-family: monospace;
+	line-height: normal !important;
+}
+
+.lines{
+	float:left;
+	width:50px;
+	border-right: 1px solid #c0c0c0;
+	height:100%;
+}
+
+.linedcontainer{
+	border-top: 1px solid #c0c0c0;
+	margin-bottom: 90px;
+}
+
+.codelines{
+	font-size: 15pt;
+	font-family: monospace;
+	line-height: normal !important;
+	text-align: right;
+	margin-right: 5px;
 }

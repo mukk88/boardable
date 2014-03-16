@@ -21,6 +21,7 @@ exports.getBook = function(req,res){
 		if(!book){
 			res.send('book not found');
 		}else{
+			console.log('!!!!!' + book.content);
 			res.render('book', {content:book.content});
 		}
 	});

@@ -1,13 +1,35 @@
 $(document).ready(function() {
+    
     var editmode = false;
 
     $('button').css('left', ($('#main').position().left - 100) + 'px');
     $('#overlay').draggable();
     $('#read').hide();
-    $('.lined').linedtextarea();
     $('.lines').hide();
 
+    var height = $('.lined').height();
+    // fill the lines
+    var fillLines = function(){
+        var h = 0;
+        var lineNo = 1;
+        $('.codelines').empty();
+        $('.lines').height($('.lined').height());
+        while($('.lined').height() - h > 0){
+            $('.codelines').append('<div class="numbers">' + lineNo + '</div>');
+            lineNo++;
+            h += 23;
+        }
 
+    };
+
+    fillLines();
+
+    $('.lined').bind('keyup', function(){
+        if(height!=$(this).height()){
+            fillLines();
+        }
+        console.log($(this).height());
+    });
 
     $('#read').click(function(){
         // editmode = false;

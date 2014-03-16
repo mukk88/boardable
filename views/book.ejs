@@ -2,9 +2,13 @@
 <head>
 	<title>book</title>
 	<link rel="stylesheet" type="text/css" href="css/book.css">
-	<link rel="stylesheet" type="text/css" href="css/jquery-linedtextarea.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/jquery-linedtextarea.css"> -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="http://tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+    <script>
+ //        tinymce.init({selector:'textarea'});
+	</script>
     <script src="js/book/jquery.linedtextarea.js"></script>
 	<script src="js/book/book.js"></script>
 </head>
@@ -24,7 +28,12 @@
 			</div>
 			<div class = "inner">
 				<h1 style="margin-left:40px;margin-top:80px;">first</h1>
-				<textarea class="lined" readonly><%=content%></textarea>
+				<div class = "linedcontainer">
+					<div class = 'lines'>
+						<div class='codelines'></div>
+					</div>
+					<div contenteditable class="lined">huh?<%=content%></div>
+				</div>
 			</div>
 		</fieldset>
 	</div>

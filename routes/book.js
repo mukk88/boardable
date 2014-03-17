@@ -35,23 +35,47 @@ exports.getBook = function(req,res){
 exports.createBook = function(req, res){
 	var title = req.body.title | 'placeholder title' + Math.random();
 	var content = req.body.content | 'empty book';
-	Book.findOne({title:title}, function(err, book){
-		if(!book){
-			var book = new Book();
-			Book.nextCount(function(err,count){
-				if(err) return;
-				book.page = 1;
-				book.title = title;
-				book.content = content;
-				book.children = [];
-				book.version = count;
-				book.save();
-				res.send(count);
-			})
-		}else{
-			res.send(false);
-		}
-	});
+	var fork = req.body.fork;
+
+	if(fork){
+		Book.findOne({title:title}, function(err, book){
+			if(book){
+				//book exists, fork it
+				var version = book.version;
+				Book.nextCount(function(err, count){
+					if(err) return;
+					book.page = 1;
+					book.title = title;
+					book.content = content;
+					book.children = [];
+					book.version = version + 1;
+					book.save();
+					res.send(book.version);
+				});
+			}else{
+				res.send(false);
+			}
+		});
+	}else{
+		Book.findOne({title:title}, function(err, book){
+			if(!book){
+				var book = new Book();
+				Book.nextCount(function(err,count){
+					if(err) return;
+					book.page = 1;
+					book.title = title;
+					book.content = content;
+					book.children = [];
+					book.version = 1;
+					book.save();
+					res.send(1);
+				});
+			}else{
+				//book of that title already exists
+				res.send(false);
+			}
+		});
+	}
 };
 
 exports.updateBook = function(req,res){

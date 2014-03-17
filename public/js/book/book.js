@@ -81,10 +81,10 @@ $(document).ready(function() {
         $.ajax({
             type:"POST",
             url:"http://boardable.azurewebsites.net/fork",
-            data: {content:content, title:title}
+            data: {content:content, title:title, fork:true}
         })
         .done(function(msg){
-            console.log('it finished posting!');
+            console.log('it finished posting!' + msg);
             if(msg){
                 window.location.href = '/book/' + title +'/' + msg;
             }else{

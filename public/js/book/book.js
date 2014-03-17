@@ -14,7 +14,7 @@ $(document).ready(function() {
         var lineNo = 1;
         $('.codelines').empty();
         $('.lines').height($('.lined').height());
-        while($('.lined').height() - h > 0){
+        while($('.lined').height() - h + 69> 0){
             $('.codelines').append('<div class="numbers">' + lineNo + '</div>');
             lineNo++;
             h += 23;
@@ -32,18 +32,15 @@ $(document).ready(function() {
     });
 
     $('#read').click(function(){
-        // editmode = false;
-        // $('p').each(function(index){
-        //     var text = $(this).text().replace(/edit/g,'');
-        //     $(this).html(text);
-        // });
         $('#read').hide();
         $('#edit').show();
-        $('.inner textarea').prop('readonly', true);
+        $('.inner textarea').removeAttr('contenteditable');
         $('.lines').hide();
         //save the contents
-        console.log($('.lined').val());
-        var content = $('.lined').val();
+        var content = $('.lined').html();
+        var regex = /<br\s*[\/]?>/gi;
+        content = content.replace(regex, "\n");
+        console.log('CONTENT!!!' + content);
         $.ajax({
           type: "POST",
           url: "http://boardable.azurewebsites.net/book",
@@ -68,22 +65,9 @@ $(document).ready(function() {
     };
 
     $('#edit').click(function(){
-        // if(!editmode){
-        //     editmode = true;
-        //     $('p').each(function(index){
-        //         var text = $(this).text().replace(/\./g,'.<button class= "editbutton" style="float:right">edit</button><br><br>');
-        //         $(this).html(text);
-        //     });
-        //     $('.editbutton').each(function(index){
-        //         $(this).attr('id', 'edit'+ index);
-        //         $(this).click(function(){
-        //             createEntry($(this), index);
-        //         });
-        //     });
-        // }
         $('#read').show();
         $('#edit').hide();
-        $('.inner textarea').prop('readonly', false);
+        $('.lined').attr('contenteditable', true);
         $('.lines').show();
 
     });

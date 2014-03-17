@@ -1,15 +1,15 @@
 var mongoose = require('mongoose');
 
-var connectionString = "mongodb://qwert:asdfg@ds030827.mongolab.com:30827/books";
+var connectionString = "mongodb://qwert:12345@oceanic.mongohq.com:10078/books";
 
 var autoIncrement = require('mongoose-auto-increment');
 var connection = mongoose.createConnection(connectionString);
 autoIncrement.initialize(connection);
 
 var bookSchema = mongoose.Schema({
+	content:String,
 	title:String,
 	page:Number,
-	content:String,
 });
 
 bookSchema.plugin(autoIncrement.plugin, { model: 'Book', startAt: 1 });
@@ -21,7 +21,7 @@ exports.getBook = function(req,res){
 		if(!book){
 			res.send('book not found');
 		}else{
-			console.log('!!!!!' + book.content);
+			console.log('!!!!!' + book);
 			res.render('book', {content:book.content});
 		}
 	});
@@ -50,8 +50,8 @@ exports.updateBook = function(req,res){
 		if(!book){
 			res.send('error saving, please try again later');
 		}else{
-
 			book.content = req.body.content;
+			console.log('saving book');
 			book.save();
 			res.send('book saved ' + book.content);
 		}

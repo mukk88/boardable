@@ -29,7 +29,7 @@ exports.getBook = function(req,res){
 		if(!book){
 			res.send('book not found');
 		}else{
-			res.render('book', {content:book.content, version:version});
+			res.render('book', {content:book.content, version:version. title:title});
 		}
 	});
 };

@@ -35,6 +35,7 @@ $(document).ready(function() {
     $('#read').click(function(){
         $('#read').hide();
         $('#edit').show();
+        $('#fork').show();
         $('.lined').attr('contenteditable', false);
         $('.lines').hide();
         //save the contents
@@ -69,6 +70,7 @@ $(document).ready(function() {
     $('#edit').click(function(){
         $('#read').show();
         $('#edit').hide();
+        $('#fork').hide();
         $('.lined').attr('contenteditable', true);
         $('.lines').show();
         fillLines();
@@ -83,7 +85,7 @@ $(document).ready(function() {
         $.ajax({
             type:"POST",
             url:"http://boardable.azurewebsites.net/fork",
-            data: {content:content, title:title, fork:1}
+            data: {content:content, title:title, fork:1, version:version}
         })
         .done(function(msg){
             console.log('it finished posting!' + msg);

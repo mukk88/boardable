@@ -2,37 +2,35 @@
 <head>
 	<title>book</title>
 	<link rel="stylesheet" type="text/css" href="../../css/book.css">
-	<!-- <link rel="stylesheet" type="text/css" href="css/jquery-linedtextarea.css"> -->
+	<link href='http://fonts.googleapis.com/css?family=Loved+by+the+King' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    <script src="http://tinymce.cachefly.net/4.0/tinymce.min.js"></script>
-    <script>
- //        tinymce.init({selector:'textarea'});
-	</script>
-    <script src="../../js/book/jquery.linedtextarea.js"></script>
 	<script src="../../js/book/book.js"></script>
 </head>
 <body>
 	<div class = "container">
-		<button class = "control" id = "read">Read</button>
+		<button class = "control" id = "read">Save</button>
 		<button class = "control" id = "edit">Edit</button>
-		<button class = "control" id = "fork">Fork</button>
+		<button class = "control" id = "fork">Version</button>
 		<fieldset id = "main" style = "margin-bottom:60px">
-			<div id ="overlay">
-				<br>
-				<span>enter text here:</span>
-				<textarea id = "new">
-				</textarea>
-				<button id = "branch">branch</button>
-				<button id = "insert">insert</button>
-			</div>
 			<div class = "inner">
-				<h1 id ="title" style="margin-left:40px;margin-top:80px;"><%=title%></h1>version <span id = "version"><%=version%></span>
+				<span id ="title"><%=title%></span>
+				<div style="float:right;margin-top:10px;">
+					Version: <span id = "version"><%=version%></span>
+				</div>
 				<div class = "linedcontainer">
 					<div class = 'lines'>
 						<div class='codelines'></div>
 					</div>
 					<div class="lined"><%=content%></div>
+				</div>
+				<div id="continue">
+					It is your turn to add to the story :)
+					<br> 
+					Click edit to change this story.
+					<br>
+					Click version to create a copy of this story.
 				</div>
 			</div>
 		</fieldset>

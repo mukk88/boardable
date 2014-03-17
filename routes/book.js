@@ -23,8 +23,7 @@ var Book = mongoose.model('Book', bookSchema);
 exports.getBook = function(req,res){
 	var url = req.url.split('/');
 	var version = parseInt(url.pop());
-	var title = url.pop();
-	console.log(version);
+	var title = url.pop().replace(/%20/g,' ');;
 	Book.findOne({title:title, version:version}, function(err,book){
 		if(!book){
 			res.send('book not found');

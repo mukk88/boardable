@@ -18,7 +18,8 @@ fieldset{
   -webkit-box-shadow: 3px 3px 5px 6px #ccc;
   box-shadow:         3px 3px 5px 6px #ccc;
   margin-bottom: 60px;
-  padding:0;
+  padding-left:25px;
+  padding-right:25px;
 }
 .inner{
 	/*padding:40px;*/
@@ -47,39 +48,6 @@ button:active{
 	top:130px;
 }
 
-#overlay{
-	position: absolute;
-	display:none;
-	left:0;
-	right:0;
-	max-height:80%;
-	height:500px;
-	width:500px;
-	border:1px solid;
-	margin-right: auto;
-	margin-left: auto;
-	background-color: #ffffff;
-	z-index: 99;
-}
-
-#overlay textarea{
-	height:80%;
-	width:90%;
-	margin-left: 5%;
-	resize:none;
-	margin-top: 5px;
-}
-
-#overlay span{
-	margin-left: 5%;
-}
-
-#overlay button{
-	float:right;
-	margin-right: 10px;
-	margin-top: 10px;
-}
-
 .lined{
 	resize:none;
 	width:600px;
@@ -89,20 +57,25 @@ button:active{
 	margin-bottom: 60px;
 	display: inline;
 	font-size: 15pt;
-	font-family: monospace;
 	line-height: normal !important;
+	font-family: 'Quicksand' sans-serif;
+}
+
+p, span, div{
+	font-family: 'Quicksand' sans-serif;
 }
 
 .lines{
 	float:left;
 	width:50px;
-	border-right: 1px solid #c0c0c0;
 	height:100%;
 }
 
 .linedcontainer{
 	border-top: 1px solid #c0c0c0;
-	margin-bottom: 180px;
+	padding-bottom: 120px;
+	padding-top: 10px;
+	border-bottom: 1px solid #c0c0c0;
 }
 
 .codelines{
@@ -111,4 +84,21 @@ button:active{
 	line-height: normal !important;
 	text-align: right;
 	margin-right: 5px;
+	border-right: 1px solid #c0c0c0;
+	padding-right: 5px;
+}
+
+#title{
+	font-family: 'Loved by the King';
+	font-size: 34pt;
+	margin-top: 20px;
+	margin-left: 40px;
+	margin-bottom: 10px;
+	text-align: bottom;
+}
+
+#continue{
+	margin-top: 10px;
+	text-align: center;
+	margin-bottom: 35px;
 }

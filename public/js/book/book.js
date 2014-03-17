@@ -35,17 +35,18 @@ $(document).ready(function() {
     $('#read').click(function(){
         $('#read').hide();
         $('#edit').show();
-        $('.inner textarea').removeAttr('contenteditable');
+        $('.lined').attr('contenteditable', false);
         $('.lines').hide();
         //save the contents
+        var version = $('#version').html();
+        var title = $('#title').html();
         var content = $('.lined').html();
         var regex = /<br\s*[\/]?>/gi;
         content = content.replace(regex, "\n");
-        console.log('CONTENT!!!' + content);
         $.ajax({
           type: "POST",
           url: "http://boardable.azurewebsites.net/book",
-          data: { "content": content }
+          data: { "content": content , "title":title, "version":version}
         })
         .done(function( msg ) {
             console.log( "Data Saved: " + msg );
@@ -82,7 +83,7 @@ $(document).ready(function() {
         $.ajax({
             type:"POST",
             url:"http://boardable.azurewebsites.net/fork",
-            data: {content:content, title:title, fork:1, version:version}
+            data: {content:content, title:title, fork:1}
         })
         .done(function(msg){
             console.log('it finished posting!' + msg);

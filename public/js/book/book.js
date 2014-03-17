@@ -78,7 +78,7 @@ $(document).ready(function() {
         var regex = /<br\s*[\/]?>/gi;
         content = content.replace(regex, "\n");
         var version = $('#version').html();
-        title = $('#title').html();
+        var title = $('#title').html();
         $.ajax({
             type:"POST",
             url:"http://boardable.azurewebsites.net/fork",

@@ -50,6 +50,7 @@ exports.createBook = function(req, res){
 						version=parseInt(book.version);
 					}
 				}
+				version++;
 				//book exists, fork it
 				Book.nextCount(function(err, count){
 					if(err) return;

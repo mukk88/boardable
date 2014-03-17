@@ -85,7 +85,7 @@ $(document).ready(function() {
         })
         .done(function(msg){
             if(msg){
-                window.location.href = 'book/' + title +'/' + msg;
+                window.location.href = '/book/' + title +'/' + msg;
             }else{
                 alert('did not work');
             }

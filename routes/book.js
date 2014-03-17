@@ -50,9 +50,10 @@ exports.updateBook = function(req,res){
 		if(!book){
 			res.send('error saving, please try again later');
 		}else{
+
 			book.content = req.body.content;
 			book.save();
-			res.send('book saved');
+			res.send('book saved ' + book.content);
 		}
 	});
 };

@@ -77,7 +77,7 @@ $(document).ready(function() {
         var content = $('.lined').html();
         var regex = /<br\s*[\/]?>/gi;
         content = content.replace(regex, "\n");
-        var version = 1;
+        var version = $('#version');
         title = $('#title').html();
         $.ajax({
             type:"POST",

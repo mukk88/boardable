@@ -5,7 +5,7 @@ var view = require('./routes/view');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-var db = require('./routes/database');
+// var db = require('./routes/database');
 var book = require('./routes/book');
 
 var app = express();
@@ -13,31 +13,31 @@ var app = express();
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 
-var User = db.getUserVar();
-var pwhash = db.getHash();
+// var User = db.getUserVar();
+// var pwhash = db.getHash();
 
 //passport
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-passport.deserializeUser(function(id, done) {
-  done(null, id);
-});
+// passport.serializeUser(function(user, done) {
+//   done(null, user.id);
+// });
+// passport.deserializeUser(function(id, done) {
+//   done(null, id);
+// });
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if(!pwhash.verify(password, user.pw)){
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
+// passport.use(new LocalStrategy(
+//   function(username, password, done) {
+//     User.findOne({ username: username }, function(err, user) {
+//       if (err) { return done(err); }
+//       if (!user) {
+//         return done(null, false, { message: 'Incorrect username.' });
+//       }
+//       if(!pwhash.verify(password, user.pw)){
+//         return done(null, false, { message: 'Incorrect password.' });
+//       }
+//       return done(null, user);
+//     });
+//   }
+// ));
 
 //app setup
 app.set('port', process.env.PORT || 3000);
@@ -62,16 +62,16 @@ if ('development' == app.get('env')) {
 }
 
 //routes
-app.get('/', ensureAuthenticated, db.getAllGames);
-app.get('/login', view.login);
-app.post('/login',passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login', failureFlash:true}));
-app.get('/logout', view.logout);
-app.post('/create', db.createUser);
-app.get('/allGames', ensureAuthenticated, db.getAllGames);
-app.get('/game/:id',ensureAuthenticated, db.viewGame);
-app.post('/game', db.createGame);
-app.get('/game/:gameid/user', ensureAuthenticated, db.joinGame);
-app.get('/connect4', view.connect4);
+// app.get('/', ensureAuthenticated, db.getAllGames);
+// app.get('/login', view.login);
+// app.post('/login',passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login', failureFlash:true}));
+// app.get('/logout', view.logout);
+// app.post('/create', db.createUser);
+// app.get('/allGames', ensureAuthenticated, db.getAllGames);
+// app.get('/game/:id',ensureAuthenticated, db.viewGame);
+// app.post('/game', db.createGame);
+// app.get('/game/:gameid/user', ensureAuthenticated, db.joinGame);
+// app.get('/connect4', view.connect4);
 
 app.get('/book/:title/:version', book.getBook);
 app.post('/book', book.updateBook);
@@ -79,14 +79,14 @@ app.post('/fork', book.createBook);
 
 //server and io
 var server = http.createServer(app);
-var io = require('socket.io').listen(server);
+// var io = require('socket.io').listen(server);
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
-db.setupIO(io);
-db.setPort(app.get('port'));
+// db.setupIO(io);
+// db.setPort(app.get('port'));
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login');
-}
+// function ensureAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) { return next(); }
+//   res.redirect('/login');
+// }

@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 
 var connectionString = "mongodb://qwert:12345@oceanic.mongohq.com:10078/books";
 
+mongoose.connect(connectionString);
+
 var autoIncrement = require('mongoose-auto-increment');
 var connection = mongoose.createConnection(connectionString);
 autoIncrement.initialize(connection);
@@ -20,7 +22,7 @@ var Book = mongoose.model('Book', bookSchema);
 
 exports.getBook = function(req,res){
 	var url = req.url.split('/');
-	var version = url.pop();
+	var version = parseInt(url.pop());
 	var title = url.pop();
 	console.log(version);
 	Book.findOne({title:title, version:version}, function(err,book){
@@ -33,12 +35,12 @@ exports.getBook = function(req,res){
 };
 
 exports.createBook = function(req, res){
-	var title = req.body.title | 'placeholder title' + Math.random();
-	var content = req.body.content | 'empty book';
-	var fork = req.body.fork;
-	var version = req.body.version;
-
-	console.log(version);
+	var title = req.body.title;
+	var content = req.body.content;
+	var fork = parseInt(req.body.fork);
+	var version = parseInt(req.body.version);
+	version++;
+	console.log(title + ' ' + content + ' ' + fork + ' ' + version);
 
 	if(fork){
 		Book.findOne({title:title}, function(err, book){
@@ -46,13 +48,14 @@ exports.createBook = function(req, res){
 				//book exists, fork it
 				Book.nextCount(function(err, count){
 					if(err) return;
-					book.page = 1;
-					book.title = title;
-					book.content = content;
-					book.children = [];
-					book.version = version + 1;
-					book.save();
-					res.send(version + 1);
+					var newbook = new Book();
+					newbook.page = 1;
+					newbook.title = title;
+					newbook.content = content;
+					newbook.children = [];
+					newbook.version = version;
+					newbook.save();
+					res.send(String(version));
 				});
 			}else{
 				res.send('fork failed' + false);
@@ -70,7 +73,7 @@ exports.createBook = function(req, res){
 					book.children = [];
 					book.version = 1;
 					book.save();
-					res.send(1);
+					res.send('1');
 				});
 			}else{
 				//book of that title already exists
@@ -87,7 +90,6 @@ exports.updateBook = function(req,res){
 		}else{
 			book.content = req.body.content;
 			console.log('saving book');
-			book.version = 1;
 			book.save();
 			res.send('book saved ' + book.content);
 		}

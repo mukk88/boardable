@@ -84,6 +84,7 @@ $(document).ready(function() {
             data: {content:content, title:title}
         })
         .done(function(msg){
+            console.log('it finished posting!');
             if(msg){
                 window.location.href = '/book/' + title +'/' + msg;
             }else{

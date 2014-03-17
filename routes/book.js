@@ -36,12 +36,14 @@ exports.createBook = function(req, res){
 	var title = req.body.title | 'placeholder title' + Math.random();
 	var content = req.body.content | 'empty book';
 	var fork = req.body.fork;
+	var version = req.body.version;
+
+	console.log(version);
 
 	if(fork){
 		Book.findOne({title:title}, function(err, book){
 			if(book){
 				//book exists, fork it
-				var version = book.version;
 				Book.nextCount(function(err, count){
 					if(err) return;
 					book.page = 1;
@@ -50,10 +52,10 @@ exports.createBook = function(req, res){
 					book.children = [];
 					book.version = version + 1;
 					book.save();
-					res.send(book.version);
+					res.send(version + 1);
 				});
 			}else{
-				res.send(false);
+				res.send('fork failed' + false);
 			}
 		});
 	}else{

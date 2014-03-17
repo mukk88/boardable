@@ -6,6 +6,7 @@ $(document).ready(function() {
     $('#overlay').draggable();
     $('#read').hide();
     $('.lines').hide();
+    $('.lined').html($('.lined').html().replace(/\n/g,'<br>'));
 
     var height = $('.lined').height();
     // fill the lines
@@ -69,7 +70,26 @@ $(document).ready(function() {
         $('#edit').hide();
         $('.lined').attr('contenteditable', true);
         $('.lines').show();
+        fillLines();
+    });
 
+    $('#fork').click(function(){
+        var content = $('.lined').html();
+        var regex = /<br\s*[\/]?>/gi;
+        content = content.replace(regex, "\n");
+        title = $('#title').html();
+        $.ajax({
+            type:"POST",
+            url:"http://boardable.azurewebsites.net/fork",
+            data: {content:content, title:title}
+        })
+        .done(function(msg){
+            if(msg){
+                window.location.href = 'book/' + title +'/' + msg;
+            }else{
+                alert('did not work');
+            }
+        });
     });
 
 });

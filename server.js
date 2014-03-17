@@ -73,8 +73,9 @@ app.post('/game', db.createGame);
 app.get('/game/:gameid/user', ensureAuthenticated, db.joinGame);
 app.get('/connect4', view.connect4);
 
-app.get('/book', book.getBook);
+app.get('/book/:title/:version', book.getBook);
 app.post('/book', book.updateBook);
+app.post('/fork', book.createBook);
 
 //server and io
 var server = http.createServer(app);

@@ -38,20 +38,22 @@ exports.createBook = function(req, res){
 	var title = req.body.title;
 	var content = req.body.content;
 	var fork = parseInt(req.body.fork);
-	console.log(title + ' ' + content + ' ' + fork + ' ' + version);
+	console.log(title + ' ' + content + ' ' + fork);
 
 	if(fork){
 		Book.find({title:title}, function(err, books){
 			if(books){
+				//book exists, fork it
 				var version = 0;
 				console.log(books)
-				for (var book in books){
-					if(parseInt(book.version)>version){
-						version=parseInt(book.version);
+				for (var i=0;i<books.length;i++){
+					console.log(books[i].version);
+					if(parseInt(books[i].version)>version){
+						version=parseInt(books[i].version);
 					}
 				}
 				version++;
-				//book exists, fork it
+
 				Book.nextCount(function(err, count){
 					if(err) return;
 					var newbook = new Book();

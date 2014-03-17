@@ -38,7 +38,7 @@ exports.createBook = function(req, res){
 	var title = req.body.title;
 	var content = req.body.content;
 	var fork = parseInt(req.body.fork);
-	console.log(title + ' ' + content + ' ' + fork);
+	console.log(title + ' ' + content + '  ' + fork);
 
 	if(fork){
 		Book.find({title:title}, function(err, books){

@@ -77,12 +77,12 @@ $(document).ready(function() {
         var content = $('.lined').html();
         var regex = /<br\s*[\/]?>/gi;
         content = content.replace(regex, "\n");
-        var version = $('#version');
+        var version = $('#version').html();
         title = $('#title').html();
         $.ajax({
             type:"POST",
             url:"http://boardable.azurewebsites.net/fork",
-            data: {content:content, title:title, fork:true, version:version}
+            data: {content:content, title:title, fork:1, version:version}
         })
         .done(function(msg){
             console.log('it finished posting!' + msg);

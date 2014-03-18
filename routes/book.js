@@ -30,17 +30,29 @@ exports.getBook = function(req,res){
 		if(!book){
 			res.send('book not found');
 		}else{
-			res.render('book', {content:book.content, version:version, title:title, fixed:book.fixed});
+			res.render('book', {content:book.content, version:version, title:title, fixed:book.fixed, children:book.children});
 		}
 	});
 };
+
+var helper = function(title, oldversion, newversion, line){
+	Book.update({title:title,version:oldversion}, {
+		$push: {children:{
+			version:newversion,
+			line:line
+		}}
+	}, function(err, object){
+		if(err) return;
+		console.log('that worked');
+	});
+}
 
 exports.createBook = function(req, res){
 	var title = req.body.title;
 	var content = req.body.content;
 	var fork = parseInt(req.body.fork);
 	var line = parseInt(req.body.line);
-	var vers = parseInt(req.body.version);
+	var oldvers = parseInt(req.body.version);
 	console.log(title + ' ' + content + '  ' + fork);
 
 	if(fork){
@@ -68,16 +80,8 @@ exports.createBook = function(req, res){
 					newbook.version = version;
 					newbook.fixed = content;
 					newbook.save();
-					next = count;
 					//update the children on the parent.
-					Book.findOne({title:title,version:version}, function(err,book){
-						if(err) return;
-						book.children = book.children.push({
-							version:next,
-							line:line
-						});
-						book.save();
-					});
+					helper(title,oldvers,version,line);
 					res.send(String(version));
 				});
 			}else{

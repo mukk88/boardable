@@ -15,13 +15,14 @@ $(document).ready(function() {
     $('#pre').html($('#pre').html().replace(/\n/g,'<br>'));
 
     var height = $('.lined').height();
+    var fixedheight = $('#pre').height();
     // fill the lines
     var fillLines = function(){
         var h = 0;
         var lineNo = 1;
         $('.codelines').empty();
-        $('.lines').height($('.lined').height() + 72);
-        while($('.lined').height() - h + 72> 0){
+        $('.lines').height($('.lined').height() + 72 + fixedheight);
+        while($('.lined').height() - h + 72 + fixedheight> 0){
             $('.codelines').append('<div class="numbers" id =line'+ lineNo +'>' + lineNo + '</div>');
             lineNo++;
             h += 24;

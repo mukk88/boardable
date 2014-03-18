@@ -1,18 +1,24 @@
 $(document).ready(function() {
     
     var maxline = 0;
+    var linelinks = {};
 
     $('button').css('left', ($('#main').position().left - 100) + 'px');
     $('#linenumber').css('left', ($('#main').position().left - 100) + 'px');
     $('#lineinput').css('left', ($('#main').position().left - 100) + 'px');
     $('#overlay').draggable();
     $('#read').hide();
-    $('.lines').hide();
+    // $('.lines').hide();
     $('#fork').hide();
     $('#linenumber').hide();
     $('#lineinput').hide();
     $('.lined').html($('.lined').html().replace(/\n/g,'<br>'));
     $('#pre').html($('#pre').html().replace(/\n/g,'<br>'));
+    var kids =  JSON.parse($('#kids').text());
+    for(var i=0;i<kids.length;i++){
+        console.log(kids[i].line);
+    }
+
 
     var height = $('.lined').height();
     var fixedheight = $('#pre').height();
@@ -23,7 +29,19 @@ $(document).ready(function() {
         $('.codelines').empty();
         $('.lines').height($('.lined').height() + 72 + fixedheight);
         while($('.lined').height() - h + 72 + fixedheight> 0){
-            $('.codelines').append('<div class="numbers" id =line'+ lineNo +'>' + lineNo + '</div>');
+            var linked = false;
+            var versionNo = 1;
+            for(var i=0;i<kids.length;i++){
+                if(lineNo==parseInt(kids[i].line)){
+                    linked = true;
+                    versionNo = kids[i].version;
+                }
+            }
+            if(linked){
+                $('.codelines').append('<a href="/book/' + $('#title').html() +'/' + versionNo + '"><div class="numbers linked" id =line'+ lineNo +'>' + lineNo + '</div></a>');
+            }else{
+                $('.codelines').append('<div class="numbers" id =line'+ lineNo +'>' + lineNo + '</div>');
+            }
             lineNo++;
             h += 24;
         }
@@ -44,7 +62,7 @@ $(document).ready(function() {
         $('#edit').show();
         $('#fork').hide();
         $('.lined').attr('contenteditable', false);
-        $('.lines').hide();
+        // $('.lines').hide();
         $('#linenumber').hide();
         $('#lineinput').hide();
         //save the contents
@@ -80,9 +98,10 @@ $(document).ready(function() {
         $('#edit').hide();
         $('#fork').show();
         $('.lined').attr('contenteditable', true);
-        $('.lines').show();
+        // $('.lines').show();
         $('#linenumber').show();
         $('#lineinput').show();
+        $('.lined').focus();
         fillLines();
     });
 

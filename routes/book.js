@@ -30,7 +30,16 @@ exports.getBook = function(req,res){
 		if(!book){
 			res.send('book not found');
 		}else{
-			res.render('book', {content:book.content, version:version, title:title, fixed:book.fixed, children:book.children});
+			var children_array = [];
+			for(var i =0;i<book.children.length;i++){
+				console.log(book.children[i].version);
+				console.log(book.children[i].line);
+				children_array.push({
+					version:book.children[i].version,
+					line:book.children[i].line
+				})
+			}
+			res.render('book', {content:book.content, version:version, title:title, fixed:book.fixed, children:children_array});
 		}
 	});
 };
@@ -75,7 +84,7 @@ exports.createBook = function(req, res){
 					var newbook = new Book();
 					newbook.page = 1;
 					newbook.title = title;
-					newbook.content = '\nstart editing here';
+					newbook.content = '\nstart editing here..';
 					newbook.children = [];
 					newbook.version = version;
 					newbook.fixed = content;

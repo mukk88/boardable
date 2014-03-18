@@ -80,6 +80,7 @@ button:active{
 	font-size: 15pt;
 	line-height: normal !important;
 	font-family: 'Quicksand' sans-serif;
+	color:darkslategrey;
 }
 
 #pre{
@@ -128,5 +129,10 @@ p, span, div{
 	margin-bottom: 35px;
 }
 
+.linked{
+	text-align: center;
+	color:red;
+	border:1px solid black;
+}
 
 

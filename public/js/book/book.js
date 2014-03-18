@@ -1,6 +1,6 @@
 $(document).ready(function() {
     
-    var editmode = false;
+    var maxline = 0;
 
     $('button').css('left', ($('#main').position().left - 100) + 'px');
     $('#linenumber').css('left', ($('#main').position().left - 100) + 'px');
@@ -27,6 +27,7 @@ $(document).ready(function() {
             lineNo++;
             h += 24;
         }
+        maxline = lineNo;
     };
 
     fillLines();
@@ -62,7 +63,6 @@ $(document).ready(function() {
           });
 
     });
-
 
     function createEntry(current, index){
         $('#overlay').show();
@@ -114,6 +114,7 @@ $(document).ready(function() {
             console.log(result);
             console.log(rest);
         }else{
+            lineNo = maxline; 
             result = $('.lined').html();    
         }
         var regex = /<br\s*[\/]?>/gi;
@@ -124,7 +125,7 @@ $(document).ready(function() {
             $.ajax({
             type:"POST",
             url:"http://boardable.azurewebsites.net/fork",
-            data: {content:result, title:title, fork:1, version:version}
+            data: {content:result, title:title, fork:1, version:version, line:line}
         })
         .done(function(msg){
             console.log('it finished posting!' + msg);

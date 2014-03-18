@@ -125,7 +125,7 @@ $(document).ready(function() {
             $.ajax({
             type:"POST",
             url:"http://boardable.azurewebsites.net/fork",
-            data: {content:result, title:title, fork:1, version:version, line:line}
+            data: {content:result, title:title, fork:1, version:version, line:lineNo}
         })
         .done(function(msg){
             console.log('it finished posting!' + msg);

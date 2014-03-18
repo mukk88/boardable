@@ -12,6 +12,7 @@ $(document).ready(function() {
     $('#linenumber').hide();
     $('#lineinput').hide();
     $('.lined').html($('.lined').html().replace(/\n/g,'<br>'));
+    $('#pre').html($('#pre').html().replace(/\n/g,'<br>'));
 
     var height = $('.lined').height();
     // fill the lines
@@ -140,7 +141,7 @@ $(document).ready(function() {
         rest = rest.replace(regex, "\n");
         var version = $('#version').html();
         var title = $('#title').html();
-        $.ajax({
+            $.ajax({
             type:"POST",
             url:"http://boardable.azurewebsites.net/fork",
             data: {content:result, title:title, fork:1, version:version}

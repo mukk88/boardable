@@ -86,27 +86,6 @@ $(document).ready(function() {
     });
 
     $('#fork').click(function(){
-        var content = $('.lined').html();
-        var regex = /<br\s*[\/]?>/gi;
-        content = content.replace(regex, "\n");
-        var version = $('#version').html();
-        var title = $('#title').html();
-        $.ajax({
-            type:"POST",
-            url:"http://boardable.azurewebsites.net/fork",
-            data: {content:content, title:title, fork:1, version:version}
-        })
-        .done(function(msg){
-            console.log('it finished posting!' + msg);
-            if(msg){
-                window.location.href = '/book/' + title +'/' + msg;
-            }else{
-                alert('did not work');
-            }
-        });
-    });
-
-    $('#test').click(function(){
         var i;
         var lineNo = $('#lineinput').val()
         var result = '', rest = '';

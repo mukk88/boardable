@@ -39,6 +39,7 @@ exports.getBook = function(req,res){
 					line:book.children[i].line
 				})
 			}
+			children_array = JSON.stringify(children_array);
 			res.render('book', {content:book.content, version:version, title:title, fixed:book.fixed, children:children_array});
 		}
 	});

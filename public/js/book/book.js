@@ -15,9 +15,6 @@ $(document).ready(function() {
     $('.lined').html($('.lined').html().replace(/\n/g,'<br>'));
     $('#pre').html($('#pre').html().replace(/\n/g,'<br>'));
     var kids =  JSON.parse($('#kids').text());
-    for(var i=0;i<kids.length;i++){
-        console.log(kids[i].line);
-    }
 
 
     var height = $('.lined').height();

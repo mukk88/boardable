@@ -25,12 +25,15 @@ fieldset{
 	/*padding:40px;*/
 }
 .control{
-	padding: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	border:1px solid;
 	width:70px;
 	position: fixed;
 	left:15%;
-	background-color: orange;
+	background-color: peachpuff;
 }
 button:hover{
 	border:1px solid white;
@@ -45,7 +48,25 @@ button:active{
 	top:80px;
 }
 #fork{
-	top:130px;
+	top:120px;
+}
+#test{
+	top:220px;
+}
+#linenumber{
+	position:fixed;
+	width:70px;
+	top:160px;
+	left:15%;
+}
+#lineinput{
+	position: fixed;
+	width: 70px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	top:180px;
+	left:15%;
+	border:1px solid;
 }
 
 .lined{
@@ -59,6 +80,10 @@ button:active{
 	font-size: 15pt;
 	line-height: normal !important;
 	font-family: 'Quicksand' sans-serif;
+}
+
+#pre{
+	font-size: 15pt;
 }
 
 p, span, div{
@@ -102,3 +127,6 @@ p, span, div{
 	text-align: center;
 	margin-bottom: 35px;
 }
+
+
+

@@ -12,8 +12,10 @@ var bookSchema = mongoose.Schema({
 	content:String,
 	title:String,
 	page:Number,
-	children:[Number],
-	version:Number
+	children:[{version:Number,
+		line:Number}],
+	version:Number,
+	fixed:String
 });
 
 bookSchema.plugin(autoIncrement.plugin, { model: 'Book', startAt: 1 });
@@ -28,7 +30,7 @@ exports.getBook = function(req,res){
 		if(!book){
 			res.send('book not found');
 		}else{
-			res.render('book', {content:book.content, version:version, title:title});
+			res.render('book', {content:book.content, version:version, title:title, fixed:book.fixed});
 		}
 	});
 };
@@ -58,9 +60,10 @@ exports.createBook = function(req, res){
 					var newbook = new Book();
 					newbook.page = 1;
 					newbook.title = title;
-					newbook.content = content;
+					newbook.content = '';
 					newbook.children = [];
 					newbook.version = version;
+					newbook.fixed = content;
 					newbook.save();
 					res.send(String(version));
 				});
@@ -79,6 +82,7 @@ exports.createBook = function(req, res){
 					book.content = content;
 					book.children = [];
 					book.version = 1;
+					book.fixed = '';
 					book.save();
 					res.send('1');
 				});

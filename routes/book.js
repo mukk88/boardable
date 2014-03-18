@@ -40,6 +40,7 @@ exports.createBook = function(req, res){
 	var content = req.body.content;
 	var fork = parseInt(req.body.fork);
 	var line = parseInt(req.body.line);
+	var vers = parseInt(req.body.version);
 	console.log(title + ' ' + content + '  ' + fork);
 
 	if(fork){
@@ -68,16 +69,16 @@ exports.createBook = function(req, res){
 					newbook.fixed = content;
 					newbook.save();
 					next = count;
-					res.send(String(version));
-				});
-				//update the children on the parent.
-				Book.findOne({title:title,version:version}, function(err,book){
-					if(err) return;
-					book.children = book.children.push({
-						version:next,
-						line:line
+					//update the children on the parent.
+					Book.findOne({title:title,version:version}, function(err,book){
+						if(err) return;
+						book.children = book.children.push({
+							version:next,
+							line:line
+						});
+						book.save();
 					});
-					book.save();
+					res.send(String(version));
 				});
 			}else{
 				res.send('fork failed' + false);

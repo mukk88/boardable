@@ -70,8 +70,8 @@ $(document).ready(function() {
         var pstart = /<p>/gi;
         var pend = /<[\/]\s*p>/gi;
         content = content.replace(regex, "\n");
-        content = content.replace(pstart, "");
-        content = content.replace(pend, "\n");
+        content = content.replace(/&lt;p&gt;/g, "");
+        content = content.replace(/&lt;\s*p&gt;/g, "\n");
         $.ajax({
           type: "POST",
           url: "http://boardable.azurewebsites.net/book",

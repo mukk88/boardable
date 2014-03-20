@@ -13,7 +13,11 @@ $(document).ready(function() {
     $('#linenumber').hide();
     $('#lineinput').hide();
     $('.lined').html($('.lined').html().replace(/\n/g,'<br>'));
+    $('.lined').html($('.lined').html().replace(/&gt;/g,'>'));
+    $('.lined').html($('.lined').html().replace(/&lt;/g,'<'));
     $('#pre').html($('#pre').html().replace(/\n/g,'<br>'));
+    $('#pre').html($('#pre').html().replace(/&lt;/g,'<'));
+    $('#pre').html($('#pre').html().replace(/&gt;/g,'>'));
     var kids =  JSON.parse($('#kids').text());
 
 

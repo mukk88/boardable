@@ -67,7 +67,11 @@ $(document).ready(function() {
         var title = $('#title').html();
         var content = $('.lined').html();
         var regex = /<br\s*[\/]?>/gi;
+        var pstart = /<p>/gi;
+        var pend = /<[\/]\s*p>/gi;
         content = content.replace(regex, "\n");
+        content = content.replace(pstart, "");
+        content = content.replace(pend, "\n");
         $.ajax({
           type: "POST",
           url: "http://boardable.azurewebsites.net/book",

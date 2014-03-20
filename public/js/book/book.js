@@ -3,6 +3,9 @@ $(document).ready(function() {
     var maxline = 0;
     var linelinks = {};
 
+    var images = ["http://upload.wikimedia.org/wikipedia/commons/e/e9/BattleOfVirginiaCapes.jpg","http://1hdwallpapers.com/wallpapers/manhattan_new_york_usa.jpg"];
+    var imageindex = 0;
+
     $('button').css('left', ($('#main').position().left - 100) + 'px');
     $('#linenumber').css('left', ($('#main').position().left - 100) + 'px');
     $('#lineinput').css('left', ($('#main').position().left - 100) + 'px');
@@ -163,8 +166,18 @@ $(document).ready(function() {
                 alert('did not work');
             }
         });
+    });
 
-
+    $(window).scroll(function(){
+        var scrolled = Math.floor($(document).scrollTop()/2000);
+        if(scrolled!=imageindex){
+            imageindex=scrolled;
+            $('#background').css('opacity', 0);
+            setTimeout(function(){
+                $('#background').attr('src', images[imageindex%2]);
+                $('#background').css('opacity', 1);
+            },800);
+        }
     });
 
 });

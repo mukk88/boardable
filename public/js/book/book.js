@@ -13,11 +13,15 @@ $(document).ready(function() {
     $('#linenumber').hide();
     $('#lineinput').hide();
     $('.lined').html($('.lined').html().replace(/\n/g,'<br>'));
-    $('.lined').html($('.lined').html().replace(/&gt;/g,'>'));
-    $('.lined').html($('.lined').html().replace(/&lt;/g,'<'));
+    var linedtext = $('.lined').html();
+    linedtext = linedtext.replace(/&gt;/gi,'>');
+    linedtext = linedtext.replace(/&lt;/gi,'<');
+    $('.lined').html(linedtext);
     $('#pre').html($('#pre').html().replace(/\n/g,'<br>'));
-    $('#pre').html($('#pre').html().replace(/&lt;/g,'<'));
-    $('#pre').html($('#pre').html().replace(/&gt;/g,'>'));
+    var pretext = $('#pre').html();
+    pretext = pretext.replace(/&gt;/gi,'>');
+    pretext = pretext.replace(/&lt;/gi,'<');
+    $('#pre').html(pretext);
     var kids =  JSON.parse($('#kids').text());
 
 

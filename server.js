@@ -71,7 +71,7 @@ if ('development' == app.get('env')) {
 // app.get('/game/:id',ensureAuthenticated, db.viewGame);
 // app.post('/game', db.createGame);
 // app.get('/game/:gameid/user', ensureAuthenticated, db.joinGame);
-// app.get('/connect4', view.connect4);
+app.get('/connect4', view.connect4);
 
 app.get('/book/:title/:version', book.getBook);
 app.post('/book', book.updateBook);

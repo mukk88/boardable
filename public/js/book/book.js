@@ -154,28 +154,28 @@ $(document).ready(function() {
             lineNo = maxline; 
             result = $('.lined').html();    
         }
-        var regex = /<br\s*[\/]?>/gi;
-        result = result.replace(regex, "\n");
-        // result = result.replace(/>/g,'&gt;');
-        // result = result.replace(/</g,'&lt;');
-        rest = rest.replace(regex, "\n");
-        rest = rest.replace(/>/g,'&gt;');
-        rest = rest.replace(/</g,'&lt;');
-        var version = $('#version').html();
-        var title = $('#title').html();
-            $.ajax({
-            type:"POST",
-            url:"http://boardable.azurewebsites.net/fork",
-            data: {content:result, title:title, fork:1, version:version, line:lineNo}
-        })
-        .done(function(msg){
-            console.log('it finished posting!' + msg);
-            if(msg){
-                window.location.href = '/book/' + title +'/' + msg;
-            }else{
-                alert('did not work');
-            }
-        });
+        // var regex = /<br\s*[\/]?>/gi;
+        // result = result.replace(regex, "\n");
+        // // result = result.replace(/>/g,'&gt;');
+        // // result = result.replace(/</g,'&lt;');
+        // rest = rest.replace(regex, "\n");
+        // rest = rest.replace(/>/g,'&gt;');
+        // rest = rest.replace(/</g,'&lt;');
+        // var version = $('#version').html();
+        // var title = $('#title').html();
+        //     $.ajax({
+        //     type:"POST",
+        //     url:"http://boardable.azurewebsites.net/fork",
+        //     data: {content:result, title:title, fork:1, version:version, line:lineNo}
+        // })
+        // .done(function(msg){
+        //     console.log('it finished posting!' + msg);
+        //     if(msg){
+        //         window.location.href = '/book/' + title +'/' + msg;
+        //     }else{
+        //         alert('did not work');
+        //     }
+        // });
     });
 
     $(window).scroll(function(){

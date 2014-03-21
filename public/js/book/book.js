@@ -78,11 +78,12 @@ $(document).ready(function() {
         var title = $('#title').html();
         var content = $('.lined').html();
         var regex = /<br\s*[\/]?>/gi;
-        var pstart = /<p>/gi;
-        var pend = /<[\/]\s*p>/gi;
         content = content.replace(regex, "\n");
         content = content.replace(/&lt;p&gt;/g, "");
         content = content.replace(/&lt;\s*\/p&gt;/g, "\n");
+
+        console.log(content);
+
         $.ajax({
           type: "POST",
           url: "http://boardable.azurewebsites.net/book",
@@ -127,6 +128,11 @@ $(document).ready(function() {
 
 
             var content = $('.lined').html();
+            var regex = /<br\s*[\/]?>/gi;
+            content = content.replace(regex, "\n");
+            content = content.replace(/>/g,'&gt;');
+            content = content.replace(/</gi,'&lt;');
+
             var content_arr = content.split(' ');
             for(i =0; i< content_arr.length;i++){
                 content_arr[i] = '<span>' + content_arr[i] + '</span>';

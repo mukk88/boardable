@@ -129,9 +129,9 @@ $(document).ready(function() {
 
             var content = $('.lined').html();
             var regex = /<br\s*[\/]?>/gi;
-            content = content.replace(regex, "\n");
-            // content = content.replace(/>/g,'&gt;');
-            // content = content.replace(/</gi,'&lt;');
+            // content = content.replace(regex, "\n");
+            content = content.replace(/>/g,'&gt;');
+            content = content.replace(/</gi,'&lt;');
 
             var content_arr = content.split(' ');
             for(i =0; i< content_arr.length;i++){
@@ -156,8 +156,8 @@ $(document).ready(function() {
         }
         var regex = /<br\s*[\/]?>/gi;
         result = result.replace(regex, "\n");
-        result = result.replace(/>/g,'&gt;');
-        result = result.replace(/</g,'&lt;');
+        // result = result.replace(/>/g,'&gt;');
+        // result = result.replace(/</g,'&lt;');
         rest = rest.replace(regex, "\n");
         rest = rest.replace(/>/g,'&gt;');
         rest = rest.replace(/</g,'&lt;');

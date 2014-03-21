@@ -3,7 +3,7 @@ $(document).ready(function() {
     var maxline = 0;
     var linelinks = {};
 
-    var images = ["http://upload.wikimedia.org/wikipedia/commons/e/e9/BattleOfVirginiaCapes.jpg","http://1hdwallpapers.com/wallpapers/manhattan_new_york_usa.jpg"];
+    var images = ["http://upload.wikimedia.org/wikipedia/commons/e/e9/BattleOfVirginiaCapes.jpg","../../images/966_max.jpg"];
     var imageindex = 0;
 
     $('button').css('left', ($('#main').position().left - 100) + 'px');
@@ -169,7 +169,7 @@ $(document).ready(function() {
     });
 
     $(window).scroll(function(){
-        var scrolled = Math.floor($(document).scrollTop()/2000);
+        var scrolled = Math.floor($(document).scrollTop()/1500);
         if(scrolled!=imageindex){
             imageindex=scrolled;
             $('#background').css('opacity', 0);

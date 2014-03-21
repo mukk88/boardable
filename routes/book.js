@@ -1,8 +1,17 @@
+var mongoOptions = 
+{ 
+	db: {safe: true }, 
+	server: { 
+		auto_reconnect: true, 
+		socketOptions: {keepAlive: 1}  
+	} 
+};
+
 var mongoose = require('mongoose');
 
 var connectionString = "mongodb://qwert:12345@oceanic.mongohq.com:10078/books";
 
-mongoose.connect(connectionString);
+mongoose.connect(connectionString, mongoOptions);
 
 var autoIncrement = require('mongoose-auto-increment');
 var connection = mongoose.createConnection(connectionString);

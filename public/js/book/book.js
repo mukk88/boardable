@@ -139,15 +139,18 @@ $(document).ready(function() {
 
             //loop through, once it is bigger, take all that is before it.
             var words = $('.lined span');
+            var havebr = -1;
             words.each(function(){
                 if($(this).offset().top < tocheck){
                     result += $(this).html() + ' ';
+                    havrbr = $(this).html().indexOf('<br>');
                 }else{
                     rest += $(this).html() + ' ';
                 }
             });
-            console.log("REST!!!!\n" + result);
-            console.log(rest);
+            if(havebr!=-1){
+                result = result.substring(0, result.lastIndexOf("<br>") + 1);
+            }
         }else{
             lineNo = maxline; 
             result = $('.lined').html();    

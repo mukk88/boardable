@@ -143,13 +143,13 @@ $(document).ready(function() {
             words.each(function(){
                 if($(this).offset().top < tocheck){
                     result += $(this).html() + ' ';
-                    havrbr = $(this).html().indexOf('<br>');
+                    havebr = $(this).html().indexOf('<br>');
                 }else{
                     rest += $(this).html() + ' ';
                 }
             });
             if(havebr!=-1){
-                result = result.substring(0, result.lastIndexOf("<br>") + 1);
+                result = result.substring(0, result.lastIndexOf("<br>"));
             }
         }else{
             lineNo = maxline; 

@@ -59,7 +59,14 @@ $(document).ready(function() {
     fillLines();
 
     $('.lined').bind('keyup', function(){
-        if(height!=$(this).height()){
+        if($('.lines').height()!=$(this).height() + fixedheight + 72){
+            fillLines();
+        }
+        console.log($(this).height());
+    });
+
+    $('#pre').bind('keyup', function(){
+        if($('.lines').height()!=$('.lined').height() + fixedheight + 72 ){
             fillLines();
         }
         console.log($(this).height());

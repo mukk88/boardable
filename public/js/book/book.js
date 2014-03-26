@@ -201,5 +201,6 @@ $(document).ready(function() {
     });
 
     $('#edit').click();
+    setTimeout(fillLines, 1000);
 
 });

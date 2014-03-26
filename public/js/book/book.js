@@ -61,9 +61,9 @@ $(document).ready(function() {
     fillLines();
 
     $('.lined').bind('keyup', function(){
-        // if($('.lines').height()!=$(this).height() + fixedheight + 144){
+        if($('.lines').height()!=$(this).height() + fixedheight + 144){
             fillLines();
-        // }
+        }
         console.log($(this).height());
     });
 

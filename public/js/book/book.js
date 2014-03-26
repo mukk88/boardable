@@ -3,7 +3,7 @@ $(document).ready(function() {
     var maxline = 0;
     var linelinks = {};
 
-    var images = ["http://upload.wikimedia.org/wikipedia/commons/e/e9/BattleOfVirginiaCapes.jpg","../../images/966_max.jpg", "../../images/war.jpg"];
+    var images = ["http://upload.wikimedia.org/wikipedia/commons/e/e9/BattleOfVirginiaCapes.jpg","../../images/966_max.jpg", "../../images/war.jpg","http://daniel.lanovaz.org/Documents/Art/California-Constitution-1920-1080.png"];
     var imageindex = 0;
 
     $('button').css('left', ($('#main').position().left - 100) + 'px');
@@ -194,7 +194,7 @@ $(document).ready(function() {
             imageindex=scrolled;
             $('#background').css('opacity', 0);
             setTimeout(function(){
-                $('#background').attr('src', images[imageindex%3]);
+                $('#background').attr('src', images[imageindex%4]);
                 $('#background').css('opacity', 1);
             },800);
         }

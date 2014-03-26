@@ -57,9 +57,12 @@ button:active{
 }
 #linenumber{
 	position:fixed;
-	width:70px;
-	top:160px;
+	width:67px;
+	top:155px;
 	left:14%;
+	background-color: white;
+	padding:1px 0px;
+	padding-left: 3px;
 }
 #lineinput{
 	position: fixed;

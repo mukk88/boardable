@@ -37,7 +37,7 @@ $(document).ready(function() {
         fixedheight = $('#pre').height();
         height = $('.lined').height();
         $('.codelines').empty();
-        $('.lines').height($('.lined').height() + 72 + fixedheight + 1);
+        $('.lines').height($('.lined').height() + 72 + fixedheight);
         while($('.lined').height() - h + 72 + fixedheight> 0){
             var linked = false;
             var versionNo = 1;
@@ -61,14 +61,14 @@ $(document).ready(function() {
     fillLines();
 
     $('.lined').bind('keyup', function(){
-        if($('.lines').height()!=$(this).height() + fixedheight + 144){
+        if($('.lines').height()!=$(this).height() + fixedheight + 72){
             fillLines();
         }
         console.log($(this).height());
     });
 
     $('#pre').bind('keyup', function(){
-        if($('.lines').height()!=$('.lined').height() + fixedheight + 144 ){
+        if($('.lines').height()!=$('.lined').height() + fixedheight + 72 ){
             fillLines();
         }
         console.log($(this).height());

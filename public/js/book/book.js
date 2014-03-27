@@ -64,14 +64,12 @@ $(document).ready(function() {
         if($('.lines').height()!=$(this).height() + fixedheight + 72){
             fillLines();
         }
-        console.log($(this).height());
     });
 
     $('#pre').bind('keyup', function(){
         if($('.lines').height()!=$('.lined').height() + fixedheight + 72 ){
             fillLines();
         }
-        console.log($(this).height());
     });
 
     $('#read').click(function(){
@@ -90,9 +88,6 @@ $(document).ready(function() {
         content = content.replace(regex, "\n");
         content = content.replace(/&lt;p&gt;/g, "");
         content = content.replace(/&lt;\s*\/p&gt;/g, "\n");
-
-        console.log(content);
-
         $.ajax({
           type: "POST",
           url: "http://boardable.azurewebsites.net/book",
@@ -189,12 +184,23 @@ $(document).ready(function() {
     });
 
     $(window).scroll(function(){
-        var scrolled = Math.floor($(document).scrollTop()/1500);
-        if(scrolled!=imageindex){
-            imageindex=scrolled;
+        var scrolled = $(document).scrollTop();
+        var newimageindex = 0;
+        if(scrolled < 1173){
+            newimageindex = 0;
+        }else if(scrolled < 3306){
+            newimageindex = 1;
+        }else if(scrolled < 5226){
+            newimageindex = 2;
+        }else{
+            newimageindex = 3;
+        }
+        console.log($(document).scrollTop());
+        if(newimageindex!=imageindex){
+            imageindex=newimageindex;
             $('#background').css('opacity', 0);
             setTimeout(function(){
-                $('#background').attr('src', images[imageindex%4]);
+                $('#background').attr('src', images[imageindex]);
                 $('#background').css('opacity', 1);
             },800);
         }

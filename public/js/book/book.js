@@ -123,6 +123,7 @@ $(document).ready(function() {
     });
 
     $('#fork').click(function(){
+        $('#fork').html('versioning..');
         var i;
         var lineNo = $('#lineinput').val()
         var result = '', rest = '';
@@ -173,13 +174,19 @@ $(document).ready(function() {
             url:"http://boardable.azurewebsites.net/fork",
             data: {content:result, title:title, fork:1, version:version, line:lineNo}
         })
-        .done(function(msg){
+        .success(function(msg){
             console.log('it finished posting!' + msg);
+            msg = parseInt(msg);
             if(msg){
+                msg = String(msg);
                 window.location.href = '/book/' + title +'/' + msg;
             }else{
                 alert('did not work');
             }
+        })
+        .error(function(){
+            $('#fork').html('Version');
+            alert('did not work, please try again.')
         });
     });
 

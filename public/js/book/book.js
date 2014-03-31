@@ -181,12 +181,18 @@ $(document).ready(function() {
                 msg = String(msg);
                 window.location.href = '/book/' + title +'/' + msg;
             }else{
-                alert('did not work');
+                alert('did not work, please try again');
+                setTimeout(function(){
+                    window.location.href = '/book/' + title +'/' + version;
+                }, 500);
             }
         })
         .error(function(){
-            $('#fork').html('Version');
             alert('did not work, please try again.')
+            setTimeout(function(){
+                window.location.href = '/book/' + title +'/' + version;
+            }, 500);
+
         });
     });
 

@@ -11,16 +11,16 @@
 		$(document).ready(function(){
 
 			function gomobile(){
-				$('body').width('275');
-				$('body').height('450');
-				$('html').height('450');
-				$('html').height('450');
+				// $('body').width('275');
+				// $('body').height('450');
+				// $('html').height('450');
+				// $('html').height('450');
 				// $('.container').height('100%');
 				// $('.container').width('100%');
-				$('.container').css('margin-top', '0');
+				// $('.container').css('margin-top', '0');
 			}
 
-			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || $(window).height() > $(window).width() ) {
+			if(/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || $(window).height() > $(window).width() ) {
 				gomobile();
 			}
 			$('img').click(function(){

@@ -18,3 +18,7 @@ exports.logout = function(req, res){
 exports.connect4 = function(req,res){
 	res.render('fun');
 }
+
+exports.quickpick = function(req,res){
+	res.render('dealfinder');
+}

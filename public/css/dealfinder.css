@@ -34,6 +34,7 @@ body{
 	color:beige;
 	background-color: midnightblue;
 	margin-top: 5px;
+    -ms-text-size-adjust: 420%;
 }
 
 .container #top span{
@@ -65,6 +66,7 @@ input{
 	padding: 3px;
 	margin-top:10px;
 	margin-bottom: 10px;
+    -ms-text-size-adjust: 420%;
 }
 
 input[type=number]{

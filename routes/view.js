@@ -20,5 +20,5 @@ exports.connect4 = function(req,res){
 }
 
 exports.quickpick = function(req,res){
-	res.render('dealfinder');
+	res.render('dealfinder.html');
 }

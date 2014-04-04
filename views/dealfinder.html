@@ -9,7 +9,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-
+			var size = 64;
+			var border = 2;
 			function gomobile(){
 				// $('body').width('275');
 				// $('body').height('450');
@@ -22,7 +23,8 @@
 				$('#middle').css('top','190px');
 				$('img').height('220')
 				$('img').width('220')
-
+				size = 220;
+				border = 4;
 				// $('#top p').css('font-size','60');
 			}
 
@@ -31,13 +33,13 @@
 			}
 			$('img').click(function(){
 				if($(this).css('border')[0] == '0'){
-					$(this).css('border','2px solid midnightblue');	
-					$(this).height('60');	
-					$(this).width('60');
+					$(this).css('border', border + 'px solid midnightblue');	
+					$(this).height(size-4);	
+					$(this).width(size-4);
 				}else{
 					$(this).css('border','0px solid');		
-					$(this).height('64');	
-					$(this).width('64');
+					$(this).height(size);	
+					$(this).width(size);
 				}
 			});
 		})
@@ -46,7 +48,7 @@
 <body>
 	<div class="container">
 		<div id ="top">
-			<p>Quickpik</p>
+			<p>Quickpick</p>
 		</div>
 		<div id = "middle">
 			I am looking for a..

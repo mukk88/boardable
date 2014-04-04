@@ -39,7 +39,7 @@ body{
 	background-color: midnightblue;
 }
 
-.container #top p{
+.container #top span{
 	font-family: 'Loved by the King', cursive;
 	font-size: 30px;
 	margin-top: 5px;
@@ -97,6 +97,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .container p{
-	margin-top: 5px;
-	margin-bottom: 5px;
+	margin-top: 3px;
+	margin-bottom: 3px;
 }

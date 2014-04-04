@@ -37,6 +37,7 @@ body{
 	/*font-weight: bold;*/
 	border:1px solid black;
 	color:beige;
+    -ms-text-size-adjust: 420%;
 	background-color: midnightblue;
 }
 

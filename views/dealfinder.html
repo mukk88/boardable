@@ -15,12 +15,15 @@
 				// $('body').height('450');
 				// $('html').height('450');
 				// $('html').height('450');
-				$('.container').height('100%');
-				$('.container').width('100%');
+				// $('.container').height('100%');
+				// $('.container').width('100%');
+				$('.container').css('position', 'fixed');
 				$('.container').css('margin-top', '0');
-				$('#top').height('180');
-				$('#middle').css('top','180px');
-				$('#top p').css('font-size','60');
+				$('.container').css('left', '0');
+				$('.container').css('right', '0');
+				// $('#top').height('180');
+				// $('#middle').css('top','180px');
+				// $('#top p').css('font-size','60');
 			}
 
 			if(/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || $(window).height() > $(window).width() ) {

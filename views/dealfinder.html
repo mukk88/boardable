@@ -28,11 +28,16 @@
 				border = 4;
 			}
 
-			if(/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || $(window).height() > $(window).width() ) {
+			if(/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 				gomobile();
+				if(/IEMobile/i.test(navigator.userAgent)){
+					$('img').height('180')
+					$('img').width('180')
+					$('img').css('margin-left', '30px');
+				}
 			}
 			$('img').click(function(){
-				if($(this).css('border')[0] == '0'){
+				if($(this).css('border-left-width')[0] == '0'){
 					$(this).css('border', border + 'px solid midnightblue');	
 					$(this).height(size-2*border);	
 					$(this).width(size-2*border);

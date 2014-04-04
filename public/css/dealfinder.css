@@ -66,6 +66,7 @@ body{
 }
 
 input{
+    -ms-text-size-adjust: 420%;
 	padding: 3px;
 	margin-top:10px;
 	margin-bottom: 10px;

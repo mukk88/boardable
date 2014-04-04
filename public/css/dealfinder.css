@@ -55,6 +55,7 @@ body{
 
 .container #middle{
 	top:60px;
+	width: 100%;
 	position: absolute;
 	padding: 10px;
 	padding-top: 20px;

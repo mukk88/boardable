@@ -1,6 +1,7 @@
 html{
 	-webkit-text-size-adjust: 420%;
     -ms-text-size-adjust: 420%;
+    -moz-text-size-adjust: 420%;
 }
 
 body{

@@ -47,7 +47,6 @@ body{
 
 .container #top{
 	top:0;
-	position: absolute;
 	width:100%;
 	height:60px;
 	background-color: midnightblue;
@@ -57,9 +56,8 @@ body{
 }
 
 .container #middle{
-	top:60px;
+	margin-top:60px;
 	width: 100%;
-	position: absolute;
 	padding: 10px;
 	padding-top: 20px;
 }

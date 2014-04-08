@@ -31,6 +31,7 @@ body{
 	border: none;
 	padding: 4px 11px;
 	/*font-weight: bold;*/
+	font-size: 1em;
 	border:1px solid black;
 	color:beige;
 	background-color: midnightblue;
@@ -66,6 +67,7 @@ input{
 	padding: 3px;
 	margin-top:10px;
 	margin-bottom: 10px;
+	font-size: 1em;
 }
 
 input[type=number]{

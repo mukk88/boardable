@@ -30,7 +30,6 @@ body{
 .container button{
 	border: none;
 	padding: 4px 11px;
-	/*font-weight: bold;*/
 	font-size: 1em;
 	border:1px solid black;
 	color:beige;
@@ -51,12 +50,10 @@ body{
 	height:60px;
 	background-color: midnightblue;
 	text-align: center;
-	float:left;
 	border-bottom: 2px solid black
 }
 
 .container #middle{
-	margin-top:60px;
 	width: 100%;
 	padding: 10px;
 	padding-top: 20px;

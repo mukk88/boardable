@@ -2,7 +2,7 @@ html{
 	/*-webkit-text-size-adjust: 420%;*/
     /*-ms-text-size-adjust: 420%;*/
     /*-moz-text-size-adjust: 420%;*/
-    font-size: 100%;
+    font-size: 1em;
     height: 100%;
 }
 
@@ -23,7 +23,6 @@ body{
 	margin-right: auto;
 	right:0;
 	left:0;
-	font-size: 100%;
 
 	position: relative;
 	background-color: white;
@@ -42,7 +41,6 @@ body{
 
 .container #top span{
 	font-family: 'Loved by the King', cursive;
-	font-size: 30px;
 	margin-top: 5px;
 	color:beige;
 }

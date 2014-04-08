@@ -2,7 +2,7 @@ html{
 	/*-webkit-text-size-adjust: 420%;*/
     /*-ms-text-size-adjust: 420%;*/
     /*-moz-text-size-adjust: 420%;*/
-    font-size: 5em;
+    font-size: 1em;
     height: 100%;
 }
 
@@ -11,7 +11,6 @@ body{
 	font-family: 'Quicksand' sans-serif;
 	margin: 0;
 	padding: 0;
-	max-height: 5000em;
 }
 
 .container{
@@ -42,7 +41,7 @@ body{
 .container #top span{
 	font-family: 'Loved by the King', cursive;
 	margin-top: 5px;
-	font-size: 50em;
+	font-size: 1.2em;
 	color:beige;
 }
 

@@ -6,46 +6,8 @@
 	<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Loved+by+the+King' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			var size = 64;
-			var border = 2;
-			function gomobile(){
-				$('html').css('font-size','4.2em');
-				$('.container').width('100%');
-				$('body').width('100%');
-				$('body').height('100%');
-				$('.container').css('margin-top', '0px');
-				$('.container').css('border', '0px');
-				$('.container').height('100%');
-				$('#top').height('200');
-				$('img').height('210');
-				$('img').width('210');
-				$('p').css('margin', '22px 0');
-				$('button').css('padding', '10px 27px');
-				$('button').css('margin-top', '20px');
-				$('input').css('padding', '15px');
-				$('img').css('margin-left', '60px');
-				size = 210;
-				border = 4;
-			}
-
-			if(/Android|iPhone|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent) ) {
-				gomobile();
-			}
-			$('img').click(function(){
-				if($(this).css('border-left-width')[0] == '0'){
-					$(this).css('border', border + 'px solid midnightblue');	
-					$(this).height(size-2*border);	
-					$(this).width(size-2*border);
-				}else{
-					$(this).css('border','0px solid');		
-					$(this).height(size);	
-					$(this).width(size);
-				}
-			});
-		})
-	</script>
+	<script src="js/deal/deal.js"></script>
+	<script src="js/deal/ksl_categories.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -54,26 +16,24 @@
 		</div>
 		<div id = "middle">
 			<p>I am looking for a..</p>
-			<input type="text" placeholder="bicycle">
+			<input id = "search" type="text" placeholder="bicycle">
 			<p>in</p>
-			<select>
-				<option>bikes</option>
-				<option>cars</option>
+			<select id="main">
 			</select>
-			<p>and</p>
-			<select>
-				<option>bikes</option>
-				<option>bikes</option>
-			</select>
+			<div id="subdiv">
+				<p>and</p>
+				<select id ="sub">
+				</select>
+			</div>
 			<p>It is going to cost between</p>
-			<span class="space">$</span><input type="number" placeholder ="0"> and $<input type="number" placeholder="100">
+			<span class="space">$</span><input  class="inputnum" id ="min" type="text" placeholder ="0"> and $<input  class="inputnum" type="text" id="max" placeholder="100">
 			<p style="margin-bottom:10px;">I want to use..</p>
 			<img src="images/ksl.png">
 			<img src="http://a3.mzstatic.com/us/r30/Purple6/v4/42/5e/fa/425efa51-2b0c-f018-b882-3eeb253e3d4a/mzl.yamvwrka.png">
 			<img src="https://ssl.gstatic.com/android/market/com.apppeople.craigslistassist/hi-256-0-59e2ec73db7c2efc958aaf61251be5a9c48ecba5">
 			<p>Let me know at</p>
-			<input type="text" placeholder="8011234567">
-			<div style="text-align:center;"><button>Find</button></div>
+			<input type="text" id="num" placeholder="8011234567">
+			<div style="text-align:center;"><button id="find">Find</button></div>
 		</div>
 	</div>	
 </body>

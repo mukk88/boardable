@@ -169,7 +169,7 @@ $(document).ready(function() {
         rest = rest.replace(/</g,'&lt;');
         var version = $('#version').html();
         var title = $('#title').html();
-            $.ajax({
+        $.ajax({
             type:"POST",
             url:"http://boardable.azurewebsites.net/fork",
             data: {content:result, title:title, fork:1, version:version, line:lineNo}

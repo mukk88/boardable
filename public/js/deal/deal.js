@@ -77,8 +77,8 @@ $(document).ready(function(){
 		console.log(rss);
 		$.ajax({
 			type:"POST",
-			url:rss,
-			phone:phone
+			url:"quickpick.herokuapp.com/subscribers",
+			data: {phone:phone, url:rss}
 		}).success(function(msg){
 			alert(msg);
 		}).error(function(){

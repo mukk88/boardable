@@ -1170,7 +1170,7 @@ $(document).ready(function(){
 
     $('#subdiv').hide();
     for(var i=0;i<categoryList.length;i++){
-        var op = $("<option>").html(categoryList[i].name);
+        var op = $("<option>").html(categoryList[i].name).attr('id', categoryList[i].category);
         $('#main').append(op);
     }
     $('#main').change(function(){
@@ -1183,7 +1183,7 @@ $(document).ready(function(){
             }
         }
         for(var i=0; i < categoryList[index].sub.length;i++){
-            var subcat = $("<option>").html(categoryList[index].sub[i].name);
+            var subcat = $("<option>").html(categoryList[index].sub[i].name).attr('id', categoryList[index].sub[i].subcategory);
             $('#sub').append(subcat);
         }
         $('#subdiv').show();

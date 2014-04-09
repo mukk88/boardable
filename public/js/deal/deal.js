@@ -79,7 +79,7 @@ $(document).ready(function(){
 			type:"POST",
 			url:"http://quickpick.herokuapp.com/subscribers",
 			data: {phone:phone, url:rss}
-		}).success(function(msg){
+		}).success(function(ms){
 			alert('it worked');
 		}).error(function(){
 			alert('did not work');

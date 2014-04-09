@@ -75,14 +75,24 @@ $(document).ready(function(){
 		var subcat = $('#sub').find(":selected").text();
 		var rss = getKSLfeed(maincat,subcat,min,max,search);
 		console.log(rss);
-		$.ajax({
-			type:"POST",
-			url:"http://quickpick.herokuapp.com/subscribers",
-			data: {phone:phone, url:rss}
-		}).success(function(msg){
-			alert(msg);
-		}).error(function(){
-			alert('did not work');
-		});
+		// $.ajax({
+		// 	type:"POST",
+		// 	url:"http://quickpick.herokuapp.com/subscribers",
+		// 	data: {phone:phone, url:rss}
+		// }).success(function(msg){
+		// 	alert(msg);
+		// }).error(function(){
+		// 	alert('did not work');
+		// });
+		setTimeout(function(){
+			gif.hide();
+			para.html('Done.<br><br>You should be hearing from us shortly :)')
+			var back = $('<button>').html('back');
+			back.click(function(){
+				$('#loading').hide();
+				$('#middle').show();
+			});
+			loading.append(back);
+		}, 1000);
 	});
 })

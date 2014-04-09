@@ -38,7 +38,7 @@ $(document).ready(function(){
 
 	$('.inputnum').focusout(function(){
 		var number = $(this).val();
-		if(!number){
+		if(!number || number ="0"){
 			return;
 		};
 		var number = parseInt(number)

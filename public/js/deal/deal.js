@@ -52,7 +52,8 @@ $(document).ready(function(){
 	function getKSLfeed(category, subcategory, minPrice, maxPrice, search){
 		rss = 'http://www.ksl.com/resources/classifieds/rss_.xml?nid=231'
 		rss += '&category=' + category;
-		rss += '&cat=' + subcategory;
+		if(subcategory)
+			rss += '&cat=' + subcategory;
 		rss += '&min_price=' + minPrice;
 		rss += '&max_price=' + maxPrice;
 		rss += '&search=' + encodeURIComponent(search);

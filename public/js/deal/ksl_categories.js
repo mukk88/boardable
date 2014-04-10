@@ -1182,8 +1182,10 @@ $(document).ready(function(){
                 index = i;
             }
         }
+        var subcat = $('<option>').html("--any--");
+        $('#sub').append(subcat);
         for(var i=0; i < categoryList[index].sub.length;i++){
-            var subcat = $("<option>").html(categoryList[index].sub[i].name).attr('id', categoryList[index].sub[i].subcategory);
+            subcat = $("<option>").html(categoryList[index].sub[i].name).attr('id', categoryList[index].sub[i].subcategory);
             $('#sub').append(subcat);
         }
         $('#subdiv').show();

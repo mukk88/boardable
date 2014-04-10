@@ -17,10 +17,8 @@ $(document).ready(function(){
         $('button').css('padding', '10px 27px');
         $('button').css('margin-top', '20px');
         $('input').css('padding', '15px');
-        $('img').css('margin-left', '60px');
         size = 210;
         border = 4;
-        $('#max').val('7');
     }
 
     if(/Android|iPhone|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent) ) {

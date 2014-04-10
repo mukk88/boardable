@@ -79,7 +79,7 @@ $(document).ready(function(){
 			type:"POST",
 			url:"http://quickpick.herokuapp.com/subscribers",
 			data: {phone:phone, url:rss}
-		}).done(function(){
+		}).always(function(){
 			gif.hide();
 			para.html('Done.<br><br>You should be hearing from us shortly :)')
 			var back = $('<button>').html('back');

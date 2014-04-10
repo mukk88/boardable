@@ -5,8 +5,8 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$.ajax({
-				type:"GET",
 				url:"http://quickpick.herokuapp.com/subscribers",
+				 dataType: "jsonp",
 			}).done(function(msg){
 				console.log('got it' + msg);
 			});

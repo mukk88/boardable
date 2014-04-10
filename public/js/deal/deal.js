@@ -26,90 +26,91 @@ $(document).ready(function(){
     if(/Android|iPhone|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent) ) {
         gomobile();
     }
-    $('img').click(function(){
-        if($(this).css('border-left-width')[0] == '0'){
-            $(this).css('border', border + 'px solid midnightblue');    
-            $(this).height(size-2*border);  
-            $(this).width(size-2*border);
-        }else{
-            $(this).css('border','0px solid');      
-            $(this).height(size);   
-            $(this).width(size);
-        }
-    });
+	alert('hello wold');
+    
+    // $('img').click(function(){
+    //     if($(this).css('border-left-width')[0] == '0'){
+    //         $(this).css('border', border + 'px solid midnightblue');    
+    //         $(this).height(size-2*border);  
+    //         $(this).width(size-2*border);
+    //     }else{
+    //         $(this).css('border','0px solid');      
+    //         $(this).height(size);   
+    //         $(this).width(size);
+    //     }
+    // });
 
-    $('.inputnum').focusout(function(){
-        var number = $(this).val();
-        if(!number || number ="0"){
-            return;
-        };
-        var number = parseInt(number)
-        if(!number){
-            alert('please input a number');
-            $(this).val('');
-            $(this).focus();
-        };
-    })
+    // $('.inputnum').focusout(function(){
+    //     var number = $(this).val();
+    //     if(!number || number ="0"){
+    //         return;
+    //     };
+    //     var number = parseInt(number)
+    //     if(!number){
+    //         alert('please input a number');
+    //         $(this).val('');
+    //         $(this).focus();
+    //     };
+    // })
 
-    function getKSLfeed(category, subcategory, minPrice, maxPrice, search){
-        rss = 'http://www.ksl.com/resources/classifieds/rss_.xml?nid=231'
-        if(category)
-            rss += '&category=' + category;
-        if(subcategory)
-            rss += '&cat=' + subcategory;
-        rss += '&min_price=' + minPrice;
-        rss += '&max_price=' + maxPrice;
-        rss += '&search=' + encodeURIComponent(search);
-        rss += '&viewNumResults=2'
-        return rss;
-    }
+    // function getKSLfeed(category, subcategory, minPrice, maxPrice, search){
+    //     rss = 'http://www.ksl.com/resources/classifieds/rss_.xml?nid=231'
+    //     if(category)
+    //         rss += '&category=' + category;
+    //     if(subcategory)
+    //         rss += '&cat=' + subcategory;
+    //     rss += '&min_price=' + minPrice;
+    //     rss += '&max_price=' + maxPrice;
+    //     rss += '&search=' + encodeURIComponent(search);
+    //     rss += '&viewNumResults=2'
+    //     return rss;
+    // }
 
-    $('#find').click(function(){
-        $('#middle').hide();
-        var gif = $('<img>').attr('src', 'images/ajax.gif');
-        var para = $('<p>').html('loading..');
-        var loading = $('<div>').html(gif)
-        loading.append(para);
-        loading.attr('id','loading');
-        $('.container').append(loading);
-        var search = $('#search').val();
-        var min = $('#min').val();
-        var max = $('#max').val();
-        var phone = $('#num').val();
-        var maincat = $('#main').find(":selected").attr('id');
-        var subcat = $('#sub').find(":selected").attr('id');
-        var rss = getKSLfeed(maincat,subcat,min,max,search);
-        console.log(rss);
-        $.ajax({
-            type:"POST",
-            url:"http://quickpick.herokuapp.com/subscribers",
-            data: {phone:phone, url:rss}
-        }).always(function(){
-            gif.hide();
-            para.html('Done.<br><br>You should be hearing from us shortly :)')
-            var back = $('<button>').html('back');
-            back.click(function(){
-                window.location.href = '/quickpick'
-            });
-            loading.append(back);
-        })
-        // .success(function(msg){
-        //  alert('it worked' + msg);
-        // }).error(function(){
-        //  alert('did not work');
-        // });
-        // setTimeout(function(){
-        //  gif.hide();
-        //  para.html('Done.<br><br>You should be hearing from us shortly :)')
-        //  var back = $('<button>').html('back');
-        //  back.click(function(){
-        //      $('#loading').hide();
-        //      $('#middle').show();
-        //  });
-        //  loading.append(back);
-        // }, 1000);
-    });
-	alert('hello world');
+    // $('#find').click(function(){
+    //     $('#middle').hide();
+    //     var gif = $('<img>').attr('src', 'images/ajax.gif');
+    //     var para = $('<p>').html('loading..');
+    //     var loading = $('<div>').html(gif)
+    //     loading.append(para);
+    //     loading.attr('id','loading');
+    //     $('.container').append(loading);
+    //     var search = $('#search').val();
+    //     var min = $('#min').val();
+    //     var max = $('#max').val();
+    //     var phone = $('#num').val();
+    //     var maincat = $('#main').find(":selected").attr('id');
+    //     var subcat = $('#sub').find(":selected").attr('id');
+    //     var rss = getKSLfeed(maincat,subcat,min,max,search);
+    //     console.log(rss);
+    //     $.ajax({
+    //         type:"POST",
+    //         url:"http://quickpick.herokuapp.com/subscribers",
+    //         data: {phone:phone, url:rss}
+    //     }).always(function(){
+    //         gif.hide();
+    //         para.html('Done.<br><br>You should be hearing from us shortly :)')
+    //         var back = $('<button>').html('back');
+    //         back.click(function(){
+    //             window.location.href = '/quickpick'
+    //         });
+    //         loading.append(back);
+    //     })
+    //     // .success(function(msg){
+    //     //  alert('it worked' + msg);
+    //     // }).error(function(){
+    //     //  alert('did not work');
+    //     // });
+    //     // setTimeout(function(){
+    //     //  gif.hide();
+    //     //  para.html('Done.<br><br>You should be hearing from us shortly :)')
+    //     //  var back = $('<button>').html('back');
+    //     //  back.click(function(){
+    //     //      $('#loading').hide();
+    //     //      $('#middle').show();
+    //     //  });
+    //     //  loading.append(back);
+    //     // }, 1000);
+    // });
 
     // var categoryList = [{
     //     "name": "Announcements",

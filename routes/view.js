@@ -24,5 +24,5 @@ exports.quickpick = function(req,res){
 }
 
 exports.quickpickclear = function(req,res){
-	res.render('unsubcribe.html');
+	res.render('unsubscribe.html');
 }

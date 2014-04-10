@@ -26,45 +26,47 @@ $(document).ready(function(){
     if(/Android|iPhone|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent) ) {
         gomobile();
     }
-	alert('hello wold');
-    
-    // $('img').click(function(){
-    //     if($(this).css('border-left-width')[0] == '0'){
-    //         $(this).css('border', border + 'px solid midnightblue');    
-    //         $(this).height(size-2*border);  
-    //         $(this).width(size-2*border);
-    //     }else{
-    //         $(this).css('border','0px solid');      
-    //         $(this).height(size);   
-    //         $(this).width(size);
-    //     }
-    // });
 
-    // $('.inputnum').focusout(function(){
-    //     var number = $(this).val();
-    //     if(!number || number ="0"){
-    //         return;
-    //     };
-    //     var number = parseInt(number)
-    //     if(!number){
-    //         alert('please input a number');
-    //         $(this).val('');
-    //         $(this).focus();
-    //     };
-    // })
+    $('img').click(function(){
+        if($(this).css('border-left-width')[0] == '0'){
+            $(this).css('border', border + 'px solid midnightblue');    
+            $(this).height(size-2*border);  
+            $(this).width(size-2*border);
+        }else{
+            $(this).css('border','0px solid');      
+            $(this).height(size);   
+            $(this).width(size);
+        }
+    });
 
-    // function getKSLfeed(category, subcategory, minPrice, maxPrice, search){
-    //     rss = 'http://www.ksl.com/resources/classifieds/rss_.xml?nid=231'
-    //     if(category)
-    //         rss += '&category=' + category;
-    //     if(subcategory)
-    //         rss += '&cat=' + subcategory;
-    //     rss += '&min_price=' + minPrice;
-    //     rss += '&max_price=' + maxPrice;
-    //     rss += '&search=' + encodeURIComponent(search);
-    //     rss += '&viewNumResults=2'
-    //     return rss;
-    // }
+    $('.inputnum').focusout(function(){
+        var number = $(this).val();
+        if(!number || number ="0"){
+            return;
+        };
+        var number = parseInt(number)
+        if(!number){
+            alert('please input a number');
+            $(this).val('');
+            $(this).focus();
+        };
+    })
+
+    function getKSLfeed(category, subcategory, minPrice, maxPrice, search){
+        rss = 'http://www.ksl.com/resources/classifieds/rss_.xml?nid=231'
+        if(category)
+            rss += '&category=' + category;
+        if(subcategory)
+            rss += '&cat=' + subcategory;
+        rss += '&min_price=' + minPrice;
+        rss += '&max_price=' + maxPrice;
+        rss += '&search=' + encodeURIComponent(search);
+        rss += '&viewNumResults=2'
+        return rss;
+    }
+
+	alert('hell wold');
+
 
     // $('#find').click(function(){
     //     $('#middle').hide();

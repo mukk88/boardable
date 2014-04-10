@@ -56,6 +56,7 @@ $(document).ready(function(){
 		rss += '&min_price=' + minPrice;
 		rss += '&max_price=' + maxPrice;
 		rss += '&search=' + encodeURIComponent(search);
+		rss += '&viewNumResults=2'
 		return rss;
 	}
 

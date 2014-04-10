@@ -50,20 +50,20 @@ $(document).ready(function(){
             $(this).val('');
             $(this).focus();
         };
-    })
+    });
 
-    function getKSLfeed(category, subcategory, minPrice, maxPrice, search){
-        rss = 'http://www.ksl.com/resources/classifieds/rss_.xml?nid=231'
-        if(category)
-            rss += '&category=' + category;
-        if(subcategory)
-            rss += '&cat=' + subcategory;
-        rss += '&min_price=' + minPrice;
-        rss += '&max_price=' + maxPrice;
-        rss += '&search=' + encodeURIComponent(search);
-        rss += '&viewNumResults=2'
-        return rss;
-    }
+    // function getKSLfeed(category, subcategory, minPrice, maxPrice, search){
+    //     rss = 'http://www.ksl.com/resources/classifieds/rss_.xml?nid=231'
+    //     if(category)
+    //         rss += '&category=' + category;
+    //     if(subcategory)
+    //         rss += '&cat=' + subcategory;
+    //     rss += '&min_price=' + minPrice;
+    //     rss += '&max_price=' + maxPrice;
+    //     rss += '&search=' + encodeURIComponent(search);
+    //     rss += '&viewNumResults=2'
+    //     return rss;
+    // };
 
 	alert('hell wold');
 

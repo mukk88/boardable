@@ -1169,8 +1169,10 @@ $(document).ready(function(){
     }]
 
     $('#subdiv').hide();
+    var op = $("<option>").html('--any--');
+    $('#main').append(op);
     for(var i=0;i<categoryList.length;i++){
-        var op = $("<option>").html(categoryList[i].name).attr('id', categoryList[i].category);
+        op = $("<option>").html(categoryList[i].name).attr('id', categoryList[i].category);
         $('#main').append(op);
     }
     $('#main').change(function(){

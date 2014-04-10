@@ -19,6 +19,7 @@ $(document).ready(function(){
 		$('img').css('margin-left', '60px');
 		size = 210;
 		border = 4;
+		$('#max').val('7');
 	}
 
 	if(/Android|iPhone|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent) ) {

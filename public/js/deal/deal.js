@@ -39,18 +39,18 @@ $(document).ready(function(){
         }
     });
 
-    $('.inputnum').focusout(function(){
-        var number = $(this).val();
-        if(!number || number ="0"){
-            return;
-        };
-        var number = parseInt(number)
-        if(!number){
-            alert('please input a number');
-            $(this).val('');
-            $(this).focus();
-        };
-    });
+    // $('.inputnum').focusout(function(){
+    //     var number = $(this).val();
+    //     if(!number || number =="0"){
+    //         return;
+    //     };
+    //     var number = parseInt(number);
+    //     if(!number){
+    //         alert('please input a number');
+    //         $(this).val('');
+    //         $(this).focus();
+    //     };
+    // });
 
     // function getKSLfeed(category, subcategory, minPrice, maxPrice, search){
     //     rss = 'http://www.ksl.com/resources/classifieds/rss_.xml?nid=231'

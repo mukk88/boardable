@@ -79,11 +79,21 @@ $(document).ready(function(){
 			type:"POST",
 			url:"http://quickpick.herokuapp.com/subscribers",
 			data: {phone:phone, url:rss}
-		}).success(function(msg){
-			alert('it worked' + msg);
-		}).error(function(){
-			alert('did not work');
-		});
+		}).always(function(){
+			gif.hide();
+			para.html('Done.<br><br>You should be hearing from us shortly :)')
+			var back = $('<button>').html('back');
+			back.click(function(){
+				$('#loading').hide();
+				$('#middle').show();
+			});
+			loading.append(back);
+		})
+		// .success(function(msg){
+		// 	alert('it worked' + msg);
+		// }).error(function(){
+		// 	alert('did not work');
+		// });
 		// setTimeout(function(){
 		// 	gif.hide();
 		// 	para.html('Done.<br><br>You should be hearing from us shortly :)')

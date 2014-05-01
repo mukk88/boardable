@@ -10,6 +10,10 @@
 				$(this).addClass('selected');
 			});
 
+
+
+
+
 			$(window).resize(function(){
 				var left = $('body').width() / 4;
 				$('#title').css('padding-left', left + 'px');
@@ -19,6 +23,10 @@
 					$('#bulb').show();
 				}
 			})
+
+			if(/Android|iPhone|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent) ) {
+				$('#title').css('padding-left', '15%');		
+		    }
 			
     		$(window).scroll(function(){
     			var splashheight = $('#splash').height();

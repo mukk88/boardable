@@ -23,6 +23,6 @@ exports.quickpick = function(req,res){
 	res.render('dealfinder.html');
 }
 
-exports.unsubscribe = function(req,res){
-	res.render('unsubscribe.html');
+exports.home = function(req,res){
+	res.render('home.ejs');
 }

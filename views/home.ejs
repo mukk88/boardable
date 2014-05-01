@@ -1,0 +1,253 @@
+<html>
+<head>
+	<title>unsub</title>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			$('.tab').click(function(){
+				$('.tab').removeClass('selected');
+				$(this).addClass('selected');
+			});
+
+			$(window).resize(function(){
+				var left = $('body').width() / 4;
+				$('#title').css('padding-left', left + 'px');
+				if ($('body').width() < 1100){
+					$('#bulb').hide();
+				}else{
+					$('#bulb').show();
+				}
+			})
+			
+    		$(window).scroll(function(){
+    			var splashheight = $('#splash').height();
+
+				if($(window).scrollTop() > splashheight){
+					$('.top').css('position','fixed');
+					$('.top').css('top','0');
+					$('.topcover').css('position','fixed');
+					$('.topcover').css('top','50px');
+					$('.main').css('padding-top', '100px');
+				}else{
+					$('.top').css('position','relative');
+					$('.topcover').css('position','relative');
+					$('.main').css('padding-top', '15px');
+					$('.topcover').css('top','0px');
+				}
+
+    			var curpostheight = $('#post0').height();
+    			var totalpostheight = 0;
+    			var curpost = 0;
+
+				if($(window).scrollTop() > splashheight){
+					var diff  = Math.min($(window).scrollTop() - splashheight, 25);
+					$('#title0').css('position', 'fixed');
+					$('#title0').css('top', '100px');
+    				$('#title0').css('margin-top', (-diff) + 'px');
+					$("#post0").css('margin-top', '55px');
+					$('.main').css('padding-top', '100px');
+				}else{
+					$('#title0').css('position', 'static');
+					$("#post0").css('margin-top', '10px');
+					$('.main').css('padding-top', '15px');
+					$('#title0').css('top', '0');
+    				$('#title0').css('margin-top', '0');
+				};
+				// 0 based index
+				var numberofposts = $('.title').length -1;
+				for(var i=0;i<numberofposts;i++){
+					curpost = i+1;
+					totalpostheight += $('#post' + i).height() + (i/2)*25;
+					if($(window).scrollTop() > totalpostheight +  splashheight + curpost*35){
+						var diff  = Math.min($(window).scrollTop() - splashheight - curpost*35 - totalpostheight, 45);
+	    				$('#title' + curpost).css('position','fixed');
+	    				$('#title' + curpost).css('margin-top', (-splashheight- curpost*35- totalpostheight -diff) + 'px');
+	    				$('#post' + curpost).css('margin-top', '55');
+					}else{
+	    				$('#post' + curpost).css('margin-top', '10');
+	    				$('#title' + curpost).css('position','static');
+	    				$('#title' + curpost).css('margin-top', '0');
+					};					
+				}
+    		});
+		});
+	</script>
+	<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Josefin+Slab:100,400' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Loved+by+the+King' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+		body{
+			margin:0;
+			padding: 0;
+			font-family: 'Quicksand' sans-serif;
+			background-color: #FCFDFF;
+		}
+		.container{
+			font-size: 4em;
+		}
+		.top{
+			width:100%;
+			height:50px;
+			background-color: #101010;
+			z-index: 99;
+		}
+		.topcover{
+			width: 100%;
+			z-index: 2;
+			height: 35px;
+			background-color: #FCFDFF;
+		}
+		.main{
+			/*box-shadow: 0 0 25px rgba(0,0,0,0.8);*/
+			padding-right: 5%;
+			padding-left: 5%;
+			padding-top: 15px;
+			padding-bottom: 10%;
+			margin-left: auto;
+			margin-right: auto;
+			left:0;
+			right:0;
+			width:45%;
+			min-width: 500px;
+			height:1200px;
+			z-index: 3;
+			background-color: #FCFDFF;
+		}
+		.main .title{
+			font-weight: bold;
+			height:45px;
+			width:100%;
+			position: static;
+			z-index:4;
+			background-color: #FCFDFF;
+			font-size: 2em;
+			font-weight: bold;
+		}
+		.main .post{
+			font-size: 1.2em;
+			margin-top: 10px;
+			width:100%;
+			z-index:1;
+			line-height: 1.4em;
+		}
+		.lined{
+			border-bottom: 1px solid lightgrey;			
+		}
+		.main .bot{
+			height:30px;
+		}
+		.top .tab{
+			font-family: 'Josefin Slab', 'serif';
+			height:50px;
+			float:left;
+			width:20%;
+			min-width: 80px;
+			text-align: center;
+			color:#f9f9f9;
+			padding-top: 14px;	
+			font-size: 1.3em;
+		}
+		.tab.selected{
+			height:36px;
+			color:black;
+			background-color: #FCFDFF;
+		}
+		.top .center{
+			margin-left: 10%;
+			width: 30%;
+			min-width: 400px;
+		}
+		#splash{
+			width:100%;
+			height:400px;
+			background-color:#FCFDFF;
+		}
+		#title{
+			float:left;
+			padding-top: 120px;
+			padding-left: 30%;
+			z-index: 5;
+		}
+		#name{
+			font-size: 5em;
+		}
+		#subname{
+			margin-top: -15px;
+			padding-left: 1%;
+			font-size: 1.58em;
+			z-index: 3;
+		}
+		#bulb{
+			height: 400px;
+			float:left;
+		}
+		button{
+			background-color: lightgrey;
+			border: none;
+			padding: 2px 20px 2px 20px;
+			font-size: 1.4em;
+			font-family: 'Josefin Slab', 'serif';
+		}
+		button:hover{
+			color:#FCFDFF;
+		}
+		.right{
+			float:right;
+		}
+		.right+*{
+			clear:right;
+		}
+		
+	</style>
+</head>
+<body>
+	<div id="splash">
+		<div id="title">
+			<div id="name">
+				<span>mark</span><span style="color:grey">woo</span>
+			</div>
+			<div id="subname">
+				<span>coder, mormon, singaporean</span>
+			</div>
+		</div>
+		<img id = "bulb" src="images/min.jpg">
+	</div>
+	<div class="top">
+		<div class="center">
+			<div class="tab selected" id = "tab0">home</div>
+			<!-- <div class="tab" id = "tab1">work</div>
+			<div class="tab" id = "tab2">games</div>
+			<div class="tab" id = "tab3">thoughts</div>
+			<div class="tab" id = "tab4">misc</div> -->
+		</div>
+	</div>
+	<div class="topcover"></div>
+	<div class ="main">
+		<div class="title" id ="title0" >about myself</div>
+		<div class="post" id = "post0">
+			<p>My name is Mark Woo and I am currently a Computer Science student at Brigham Young University. </p>
+			<p>I was born in Singapore and gew up on math puzzles and basketball. I enjoy basically anything geeky. I'm also game for most sports but mostly do triathlons and climb. </p>
+			<p>I am somewhat introverted and enjoy talking with people on an individual basis. I am spontaneous and easily take on the traits of the people that I associate with.</p>
+			<p>Connect with me at: <a target="blank" href="http://www.facebook.com/mukk.woo">facebook</a>, 
+					<a target="blank" href="http://www.linkedin.com/pub/mark-woo/56/9a5/13a/">linkedin</a>, <a target="blank" href="https://github.com/mukk88">github</a> or <a target="blank" href="mailto:markwoo@gmail.com">email.</a> I have yet to be converted to twitter :) </p> 
+			<div class="bot lined"></div>
+			<div class="bot"></div>
+		</div>
+		<div class="title" id = "title1" >my home</div>
+		<div class="post" id = "post1">
+			<p>I grew up on the tiny island of Singapore and to me it will always be home. It is also home to some of the best food around. It has been growing up as a city and things are changing. As with all growing experiences there are things you miss and things you look forward to. It is all pretty exciting though. If you havn't already visited I think you should. </p>
+			<a class="right" href="https://www.google.com/maps/place/Singapore/@1.3185848,103.8455665,11z/data=!3m1!4b1!4m2!3m1!1s0x31da11238a8b9375:0x887869cf52abf5c4" target="blank"><button>take a look</button></a>
+			<div class="bot lined"></div>
+			<div class="bot"></div>
+		</div>
+		<div class="title" id = "title2" >my beliefs</div>
+		<div class="post" id = "post2">
+			<p>I am a member of The Church of Jesus Christ of Latter day Saints. I believe that there is a God in heaven who loves us. I believe that he has a plan for us that will help us be happy. I enjoy learning about and living that plan. It has helped anchor my life and brought me much joy. </p>
+			<a class="right" target="blank" href="http://www.mormon.org"><button>learn more</button></a>
+			<div class="bot lined"></div>
+			<div class="bot"></div>
+		</div>
+	</div>
+</body>
+</html>

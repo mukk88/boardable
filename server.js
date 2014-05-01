@@ -78,7 +78,7 @@ app.get('/book/:title/:version', book.getBook);
 app.post('/book', book.updateBook);
 app.post('/fork', book.createBook);
 app.get('/quickpick', view.quickpick);
-app.get('/unsubscribe', view.unsubscribe);
+app.get('/', view.home);
 
 //server and io
 var server = http.createServer(app);
